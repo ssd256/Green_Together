@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper	namespace="questionMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*) 
+		from board
+		where b_category='자주묻는질문' and  b_status='N'
+	</select>
+
+	<select id="selectList" resultMap="questionListResultSet">
+		select b_no, b_title, b_content, b_category, q_category, m_id
+		from board
+		    join question using(b_no)
+		    <if test="categoryTab == '전체'">
+		    	where b_status='N' and b_category='자주묻는질문'
+		    </if>
+		    <if test="categoryTab != '전체'">
+				where b_status='N' and b_category='자주묻는질문' and q_category='${categoryTab}'
+		    </if>
+	</select>
+	
+	<select id="selectList2" resultMap="questionListResultSet">
+		select b_no, b_title, b_content, b_category, q_category, m_id
+		from board
+		    join question using(b_no)
+		    <!-- <if test="categoryTab == '전체'">
+		    	where b_status='N' and b_category='자주묻는질문'
+		    </if>
+		    <if test="categoryTab != '전체'"> -->
+				where b_status='N' and b_category='자주묻는질문' and q_category='${categoryTab}'
+			<!-- </if> -->
+	</select>
+	
+	<resultMap type="Question" id="questionListResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="Q_CATEGORY" property="qCategory"/>
+		<result column="B_TITLE" property="bTitle"/>
+		<result column="B_CONTENT" property="bContent"/>
+		<result column="B_CATEGORY" property="bCategory"/>
+		<result column="B_STATUS" property="bStatus"/>
+	</resultMap>
+	
+	<insert id="insertBoard">
+		insert into board values(SEQ_BOARD_NO.nextval, '${mId}', '${bTitle}', '${bContent}', '자주묻는질문', sysdate, sysdate, 'N')
+	</insert>
+	
+	<insert id="insertQuestion">
+		insert into question values(SEQ_BOARD_NO.currval, '${qCategory}')
+	</insert>
+	
+	<select id="selectQuestion" resultMap="questionListResultSet">
+		select b_no, b_title, b_content, b_category, q_category, m_id
+		from board
+		    join question using(b_no)
+		where b_status ='N' and b_category='자주묻는질문' and b_no = ${bNo}
+	</select>
+	
+	<update id="updateBoard">
+		update board set b_title = #{bTitle}, b_content = #{bContent}
+		where b_no = ${bNo}
+	</update>
+	
+	<update id="deleteBoard">
+		update board set b_status = 'Y'
+		where b_no = ${bNo}
+	</update>
+	
+</mapper>
+

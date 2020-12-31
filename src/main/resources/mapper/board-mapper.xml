@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+
+	<insert id="insertFiles">
+   		insert into files values(SEQ_FILES_NO.nextval, SEQ_BOARD_NO.CURRVAL, '${fPath}', '${fOriginName}', '${fChangeName}', '3', 'N')
+   </insert>
+
+	<insert id="insertBoard">
+   		insert into board values(SEQ_BOARD_NO.nextval, '${mId}', '${bTitle}', '${bContent}', '${bCategory}', sysdate, sysdate, 'N')
+   </insert>
+   
+   <select id="getImageListCount" resultType="_int">
+      select count(*)
+      from FILES
+      where F_LEVEL ='3' and F_STATUS = 'N'
+   </select>
+   
+   <select id="selectImageBoard" resultMap="boardResultSet">
+	   	select *
+	   	from board
+	   	where B_CATEGORY='${string}' and B_STATUS='N'
+   </select>
+   
+   <resultMap type="Board" id="boardResultSet">
+      <id property="bNo" column="B_NO" />         
+      <result property="mId" column="M_ID" />
+      <result property="bTitle" column="B_TITLE" />
+      <result property="bContent" column="B_CONTENT" />
+      <result property="bCategory" column="B_CATEGORY" />
+      <result property="bDate" column="B_DATE" />
+      <result property="bModifydate" column="B_MODIFYDATE" />
+      <result property="bStatus" column="B_STATUS" />
+   </resultMap>
+   
+    <select id="selectImageFiles" resultMap="filesResultSet">
+	   	select *
+	   	from FILES
+	   	where B_NO='${getbNo}' and F_STATUS='N'
+   </select>
+   
+   <resultMap type="Files" id="filesResultSet">
+      <id property="fNum" column="F_NUM" />         
+      <result property="bNo" column="B_NO" />
+      <result property="fPath" column="F_PATH" />
+      <result property="fOriginName" column="F_ORIGINNAME" />
+      <result property="fChangeName" column="F_CHANGENAME" />
+      <result property="fLevel" column="F_LEVEL" />
+      <result property="fStatus" column="F_STATUS" />
+   </resultMap>
+   
+   <update id="updateBoard">
+   		update board
+   		set B_CONTENT=#{bContent}, B_MODIFYDATE=sysdate
+   		where B_NO = #{bNo}
+   </update>
+   
+   <update id="updateFiles">
+   		update FILES
+   		set F_PATH=#{fPath}, F_ORIGINNAME=#{fOriginName}, F_CHANGENAME=#{fChangeName}
+   		where B_NO = #{bNo}
+   </update>
+   
+</mapper>

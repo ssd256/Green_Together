@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+footer{
+    height: auto;
+    background: rgb(234, 234, 234);
+    margin-top : 60px;
+}
+
+
+#footerTextBox{
+	/* margin-left: 30%; */
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 25px;
+	color: black; 
+	text-align: center;
+}
+
+
+#top{
+	position: fixed;
+	width: 40px; height: 40px; right: 50px;
+	bottom: 180px;
+  	display: none;  
+	z-index: 999;
+}
+
+#top:hover{
+	cursor: pointer;	
+} 

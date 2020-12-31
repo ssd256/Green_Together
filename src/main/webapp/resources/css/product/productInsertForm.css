@@ -1,0 +1,87 @@
+@charset "UTF-8";
+     table{				/* 내용 전체 영역 */
+     	margin: 0px 0px 0px 20%;
+     }
+     
+     .explan th{		/* 내용 설명 글자들 */ 
+     	text-align: left;
+     	vertical-align: top;
+     }
+     
+    .explan th span, #img_table th span{		/* 내용 설명 중 '*' */ 
+     	color: red;
+     }
+     
+     .explan{
+     	border-spacing: 20px;
+     }
+     
+     #product select{	 /* 카테고리 */
+     	width: 200px;
+     	height: 30px;
+     	padding: 5px;
+     }
+     
+     #product select:hover{
+     	cursor: pointer;
+     }
+     
+     #product input{	/* 상품명 */
+     	width: 450px;
+     	height: 28px;
+     	padding: 5px;
+     }
+     
+     #info textarea{	/* 상품설명 */
+     	padding: 10px;
+     	resize: none;
+     	overflow: auto;
+     }
+     
+     #img_table{	/* 상품 이미지 영역 */
+     	border-spacing: 20px;	/* td, th 간격 조절 */
+     	padding: 0px;
+     }
+     
+     .imgs{			/* 파일 업로드 영역 */
+     	border: 1px solid gray;
+     	width: 100px;
+     	height: 100px;
+     	background-color: lightgray;
+     }
+     
+     .img{
+  	    border: none;
+     	width: 100px;
+     	height: 100px;
+     }
+     
+     .pictureArea:hover{
+     	cursor: pointer;
+     }
+     
+     #buttonArea{		/* 취소, 확인 버튼 */
+	    margin: 3% 0px 3% 48%;
+     }
+     
+     .btn{
+     	width: 70px;
+	    height: 30px;
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    margin: 0px 10% 0px 0px;
+     }
+     
+     .btn:hover{
+     	cursor: pointer;
+     }
+     
+     #cancel{		/* 취소 버튼 */
+     	background: rgb(193, 223, 135);
+     }
+     
+     #okay{			/* 등록 버튼 */
+     	background: rgb(99, 165, 55);
+     }
+    

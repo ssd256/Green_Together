@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+	#sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: -100px;
+    }
+    
+    
+    #wishhr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 125px;
+    	margin-top: -15px;
+    	margin-left: -114px; 
+   	}
+   	
+   
+   	.wishDiv{	/* 요소 전체다이브 */	
+   		width: 1200px; 
+   		margin: auto;
+   		margin-top: 50px;
+   		margin-left: 150px;
+   	}
+   	
+   	.wishDiv img{
+   		width: 80px; height: 120px;
+   	}
+
+	.wishDiv table{
+	   	width: 1200px; 
+	   	border-collapse: collapse;/* 선 여백 없애기 */ 
+   }
+	
+	.wishDiv table th{
+		height: 50px;
+	   	background: rgba(153, 203, 56, 0.5);
+   }
+   	
+   .wishDiv table  td{
+	   	height: 200px;
+	   	border-bottom: 1px solid rgb(127, 127, 127);
+	   	font-weight: bold;
+   }
+   
+   .wishDiv table  th:nth-child(1){		/* 개수 */
+   		width: 150px;
+   }
+   
+   .wishDiv table  td:nth-child(1){		/* 개수 */
+   		width: 150px;
+   		text-align: center;
+   }
+   
+   .wishDiv table  td:nth-child(2){		/* 상품 정보 */
+   		padding-left: 100px;
+   		width: 150px;
+   }
+   
+   .wishDiv table  th:nth-child(3){		/* 상품 금액 */
+   		padding-left: 30px;
+   		text-align: left;
+   }
+   
+   .wishDiv table  td:nth-child(4){		/* 상품 금액 */
+   		padding-left: 30px;
+   }
+   
+    .wishDiv table  td:nth-child(5){	/* 장바구니, 삭제하기 버튼 */
+    	width: 100px;
+    	padding-left: 30px;
+    	padding-right: 10px;
+    }
+    
+    .img_area{
+   		height: 150px;
+   	}
+   	
+   	.img_area > img:hover{
+   		cursor: pointer;
+   	}
+   	
+   /* 가격 표 선 추가 */
+   .price{
+	   width: 130px;
+	   border-left: 1px solid rgb(127, 127, 127);
+	   font-weight: bold;
+	   font-size: 18px;
+   }	
+   
+   .wishInfo{
+	   font-size: 18px;
+	   font-weight: bold;
+   }
+   
+   #selectDelete, input[type=button]{
+	   background: rgba(153, 203, 56, 0.5);
+	   width: 100px; height: 35px;
+	   margin-top: 20px;
+	   border-radius: 5px;
+	   cursor: pointer;
+	   border: none;
+	   font-weight: bold;
+   } 
+   
+   input[name=cartInput]{
+   		background : rgba(153, 203, 56, 0.7);
+   }
+   
+   input[name=del]{
+   		background : rgba(217, 217, 217, 0.5);
+   }

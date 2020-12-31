@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* main{
+	margin: 60px 15%;
+	min-height: 62%;
+	height: auto;
+	display: flex;
+}
+section {
+	flex: 5;
+	height: auto;
+}
+aside {
+    flex: 1;
+    height: auto;
+    position: relative;
+    text-align:center;
+}
+aside a {
+	text-decoration: none;
+	color: black;
+	font-size: 10px; 
+	font-weight: bold;
+}
+
+aside h2{
+    padding: 8px 12px; 마우스 선택영역이 넓어짐
+} */
+/* 회원 정보 테이블 */
+table{
+	margin: 0;
+	margin-left : 15%;
+    align-items: center;
+  	border-spacing: 15px 20px;
+}
+table td{
+   font-weight: bold;
+   width: auto;
+}
+/* 주소검색,메일인증버튼 */
+#post_btn,#email_btn,#kakao_btn{
+    width: 120px; height: 30px;
+	margin: 0px 0px 5px 10px;
+	border-radius: 7px;
+	background: rgb(153, 203, 56);
+	cursor: pointer;	
+	font-weight: bold;
+}
+#kakao_btn{
+	background: rgb(255,226,47);
+}
+/* input type:text */
+.text_box{
+    height: 41px;
+}
+#sample6_address,#sample6_detailAddress{
+    width: 280px;
+}
+#btn_box{
+    text-align: center;
+}
+#cancleBtn, #submitBtn{
+	display: inline-block;
+	border: none;
+	border-radius:5px;
+	background: rgb(99, 165, 55);
+	color: white;
+	width: 150px; height: 50px;
+	cursor: pointer;
+	font-size: 20px;
+	margin-top: 40px; margin-left: 20px;
+}
+
+#cancleBtn{
+	background: rgb(193, 223, 135);
+}
+/* 회원정보 text */
+#memberInfo{
+    text-align: center;
+}

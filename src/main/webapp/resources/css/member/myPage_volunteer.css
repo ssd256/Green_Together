@@ -1,0 +1,94 @@
+@charset "UTF-8";
+section{
+		height: auto;
+		margin: 0px 10%;
+	}
+
+	.flex_div{
+		display: flex;
+		margin: 0px 2%;
+		text-align: center;
+	}
+	#flex_div_title{
+		font-size: 16px;
+		font-weight: bolder;
+	}
+	.hrDiv{
+		margin: 0px 2%;
+	}
+	.flex_div_2{
+		flex:  5.5;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.flex_div_2_p{
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		text-align: left;
+		cursor: pointer;
+	}
+	.flex_div_3{
+		flex:  1..5;
+	}
+	.flex_div_4{
+		flex: 1.5;
+	}
+	.flex_div_5{
+		flex: 1.5;
+	}
+	.cancleBtn{
+		width: 50%;
+		height: 40px;
+		border: none;
+		background: rgb(68, 193, 163);
+	}
+	.finishBtn{
+		width: 50%;
+		height: 40px;
+		border: none;
+		color: black;
+	}
+	
+	#sectionDiv_1{
+		margin: 0px 10%;
+	}
+	
+	.writeVR{
+		background: rgb(184, 231, 252);
+		width: 50%;
+		height: 40px;
+		border: none;
+		color: black;
+	}
+	
+	#vrWriteBtn{
+		background: rgb(184, 231, 252);
+		height: 30px;
+		border: none;
+		border-radius: 5px;
+	}
+	
+	#vrWriteBtnDiv{
+		text-align: right;
+		display: inline-block;
+		width: 850px;
+	}
+	
+	#mvH2{
+		display: inline-block;
+	}
+	
+	#h2Span{
+		font-size: 25px;
+		font-weight: bolder;
+	}
+	
+	#vReviewListBtn{
+		background: rgb(184, 231, 252);
+		height: 30px;
+		border: none;
+		border-radius: 5px;
+	}

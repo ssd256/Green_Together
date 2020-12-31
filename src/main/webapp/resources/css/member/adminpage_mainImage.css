@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+main{
+	margin: 60px 15%;
+	min-height: 62%;
+	height: auto;
+	display: flex;
+}
+section {
+	flex: 5;
+	height: auto;
+	margin: 0 auto;
+}
+aside {
+    flex: 1;
+    height: auto;
+    position: relative;
+    text-align:center;
+}
+aside a {
+	text-decoration: none;
+	color: black;
+	font-size: 10px; 
+	font-weight: bold;
+}
+
+aside h2{
+    padding: 8px 12px; /* 마우스 선택영역이 넓어짐 */
+}
+table{
+	margin: 0 auto;
+}
+table th{
+	text-align: left;
+	height: 50px;
+}
+.URLtext{
+	height: 25px;
+	width: 260px;
+}
+.linckTable{
+	border-bottom: 2px solid black;
+	padding: 0;
+}
+  /* 미리보기 클래스 div */
+  .previewDiv{
+     width: 558.815px;
+     height: 250px;
+     display: inline-block;
+     border: solid 1px;
+  }
+  /* 미리보기 이미지 */
+  .preImg,.detailImg{
+     width: 100%;
+     height: 250px;
+  }
+.btn_cancle, .btn_update{
+	display: inline-block;
+	border: none;
+	border-radius:5px;
+	background: rgb(99, 165, 55);
+	color: white;
+	width: 100px; height: 30px;
+	cursor: pointer;
+}
+.btn_update{
+	float: right;
+}
+.btn_cancle{
+	background: rgb(193, 223, 135);
+}
+.textbox{
+	border: none;
+	font-size: 16px;
+	font-weight: bold;
+}
+#adminpageTitle{
+	text-align: center;
+}

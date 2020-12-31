@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="volunteerMapper">
+
+	<insert id="insertVolunteer">
+<!-- 		insert into board values (SEQ_BOARD_NO.nextval, 'admin', #{bTitle}, #{bContent}, '봉사활동', DEFAULT , DEFAULT , DEFAULT) -->
+		insert all into board values (SEQ_BOARD_NO.nextval, 'admin', #{bTitle}, #{bContent}, '봉사활동', DEFAULT , DEFAULT , DEFAULT)
+				   into volunteer values (SEQ_BOARD_NO.nextval, #{vDay}, #{vTime}, #{vLocation}, #{vAgency}, #{vRecruitment}, DEFAULT, #{vResponsibility}, #{vPhone}, DEFAULT)
+		select * from dual
+	</insert>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from board
+		where b_status='N' and b_category='봉사활동'
+	</select>
+	
+	<select id="getVRListCount" resultType="_int">
+		select count(*)
+		from (select *
+         	  from volunteer
+                    join board using (b_no)
+         	  where v_count > 0 and b_status = 'N')
+	</select>
+	
+	<select id="getListCountOption" resultType="_int">
+		select count(*)
+      from (select B_NO, B_TITLE, V_DAY, V_LOCATION, V_RECRUITMENT, V_APPLICANT, b_category, b_status
+         from board
+             join volunteer using(b_no)
+             where b_status='N' and b_category='봉사활동'
+         <if test="input.substring(0,2) != '전체'">
+            and SUBSTR(V_LOCATION,1,2) = substr('${input}', 1, 2)
+         </if>
+         
+         <if test="input.contains('@모집중')">
+            and V_RECRUITMENT > V_APPLICANT
+         </if>
+         <if test="input.contains('@모집완료')">
+            and (V_RECRUITMENT = V_APPLICANT OR substr(v_day, 12, 10)<![CDATA[  < ]]>SYSDATE)
+         </if>
+         
+         and substr(v_day, 1, 10) >= to_date(substr('${ input }', instr('${ input }', '#', 1)+1, 4)
+                                                    ||substr('${ input }', instr('${ input }', '#', 1)+6, 2)
+                                                    ||substr('${ input }', instr('${ input }', '#', 1)+9, 2), 'yyyy-mm-dd')
+            <if test="!input.contains('~end없음')">
+            <![CDATA[  
+            and substr(v_day, 12, 10) <= to_date(substr('${ input }', instr('${ input }', '~', 1)+1, 4)
+                                                    ||substr('${ input }', instr('${ input }', '~', 1)+6, 2)
+                                                    ||substr('${ input }', instr('${ input }', '~', 1)+9, 2), 'yyyy-mm-dd')
+         ]]>
+            </if>
+         )
+      where b_status='N' and b_category='봉사활동'
+	</select>
+	
+	<select id="selectList" resultMap="volunteerListResultSet">
+		select B_NO, B_TITLE, V_DAY, V_LOCATION, V_RECRUITMENT, V_APPLICANT
+		from board
+			 join volunteer using(b_no)
+		where b_status='N' and b_category='봉사활동'
+		order by B_no desc 
+	</select>
+	
+	<select id="selectOptionList" resultMap="volunteerListResultSet">
+		select B_NO, B_TITLE, V_DAY, V_LOCATION, V_RECRUITMENT, V_APPLICANT
+		from (select B_NO, B_TITLE, V_DAY, V_LOCATION, V_RECRUITMENT, V_APPLICANT, b_category, b_status
+			from board
+				 join volunteer using(b_no)
+				where b_status='N' and b_category='봉사활동'
+			<if test="input.substring(0,2) != '전체'">
+				and SUBSTR(V_LOCATION,1,2) = substr('${input}', 1, 2)
+			</if>
+			<if test="input.contains('@모집중')">
+				and V_RECRUITMENT > V_APPLICANT
+			</if>
+			<if test="input.contains('@모집완료')">
+				and (V_RECRUITMENT = V_APPLICANT OR substr(v_day, 12, 10)<![CDATA[  < ]]>SYSDATE)
+			</if>
+			
+			and substr(v_day, 1, 10) >= to_date(substr('${ input }', instr('${ input }', '#', 1)+1, 4)
+                                                    ||substr('${ input }', instr('${ input }', '#', 1)+6, 2)
+                                                    ||substr('${ input }', instr('${ input }', '#', 1)+9, 2), 'yyyy-mm-dd')
+            <if test="!input.contains('~end없음')">
+            <![CDATA[  
+            and substr(v_day, 12, 10) <= to_date(substr('${ input }', instr('${ input }', '~', 1)+1, 4)
+                                                    ||substr('${ input }', instr('${ input }', '~', 1)+6, 2)
+                                                    ||substr('${ input }', instr('${ input }', '~', 1)+9, 2), 'yyyy-mm-dd')
+			]]>
+            </if>
+			)
+		where b_status='N' and b_category='봉사활동'
+		order by b_no desc
+	</select>
+	 
+	<select id="vDetail" resultMap="volunteerListResultSet">
+<!-- 		select B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE -->
+<!-- 		from board -->
+<!-- 			join volunteer using(b_no) -->
+<!-- 		where b_no = #{bNNo} -->
+		SELECT B_NO, B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, 
+				NEXT_NO, NEXT_TITLE, PRE_NO, PRE_TITLE, DAY1, DAY2, TIME1, TIME2, address1, address2
+		FROM (
+            	SELECT B_NO,B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, B_CATEGORY,
+            				   <if test="input.contains('@#~end없음')">
+            				   <![CDATA[ 
+                               (SELECT MAX(B_NO) FROM BOARD WHERE B_NO < to_number(substr('${input}', instr('${input}', '*', 1)+1)) AND B_STATUS='N' and B_CATEGORY='봉사활동') AS NEXT_NO, 
+                               (SELECT B_TITLE FROM BOARD WHERE B_NO = (SELECT MAX(B_NO) FROM BOARD WHERE B_NO < to_number(substr('${input}', instr('${input}', '*', 1)+1)) AND B_STATUS='N' and B_CATEGORY='봉사활동')) AS NEXT_TITLE,
+                               (SELECT MIN(B_NO) FROM BOARD WHERE B_NO > to_number(substr('${input}', instr('${input}', '*', 1)+1)) AND B_STATUS='N' and B_CATEGORY='봉사활동') AS PRE_NO,
+                               (SELECT B_TITLE FROM BOARD WHERE B_NO = (SELECT MIN(B_NO) FROM BOARD WHERE B_NO > to_number(substr('${input}', instr('${input}', '*', 1)+1)) AND B_STATUS='N' and B_CATEGORY='봉사활동')) AS PRE_TITLE,
+                               ]]>
+                               </if>
+            				   <if test="!input.contains('@#~end없음')">
+                               (SELECT MAX(B_NO)
+                                FROM BOARD JOIN VOLUNTEER USING(B_NO)
+                                WHERE B_NO<![CDATA[  <  ]]>to_number(substr('${input}', instr('${input}', '*', 1)+1))
+                                <if test="input.substring(0,2) == '전체'">
+									AND b_status='N' and b_category='봉사활동'
+								</if>
+								<if test="input.substring(0,2) != '전체'">
+									AND b_status='N' and b_category='봉사활동' and SUBSTR(V_LOCATION,1,2) = substr('${input}', 1, 2)
+								</if>
+								<if test="input.contains('@모집중')">
+									and V_RECRUITMENT > V_APPLICANT
+								</if>
+								<if test="input.contains('@모집완료')">
+									and (V_RECRUITMENT = V_APPLICANT OR substr(v_day, 12, 10)<![CDATA[  < ]]>SYSDATE)
+								</if>
+								and substr(v_day, 1, 10) >= to_date(substr('${ input }', instr('${ input }', '#', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+9, 2), 'yyyy-mm-dd')
+					            <if test="!input.contains('~end없음')">
+					            <![CDATA[  
+					            and substr(v_day, 12, 10) <= to_date(substr('${ input }', instr('${ input }', '~', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+9, 2), 'yyyy-mm-dd')
+								]]>
+					            </if>
+                               ) AS NEXT_NO,
+                               (SELECT B_TITLE FROM BOARD WHERE B_NO = (SELECT MAX(B_NO)
+                                FROM BOARD JOIN VOLUNTEER USING(B_NO)
+                                WHERE B_NO<![CDATA[  <  ]]>to_number(substr('${input}', instr('${input}', '*', 1)+1))
+                                <if test="input.substring(0,2) == '전체'">
+									AND b_status='N' and b_category='봉사활동'
+								</if>
+								<if test="input.substring(0,2) != '전체'">
+									AND b_status='N' and b_category='봉사활동' and SUBSTR(V_LOCATION,1,2) = substr('${input}', 1, 2)
+								</if>
+								<if test="input.contains('@모집중')">
+									and V_RECRUITMENT > V_APPLICANT
+								</if>
+								<if test="input.contains('@모집완료')">
+									and (V_RECRUITMENT = V_APPLICANT OR substr(v_day, 12, 10)<![CDATA[  < ]]>SYSDATE)
+								</if>
+								and substr(v_day, 1, 10) >= to_date(substr('${ input }', instr('${ input }', '#', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+9, 2), 'yyyy-mm-dd')
+					            <if test="!input.contains('~end없음')">
+					            <![CDATA[  
+					            and substr(v_day, 12, 10) <= to_date(substr('${ input }', instr('${ input }', '~', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+9, 2), 'yyyy-mm-dd')
+								]]>
+					            </if>
+                               )) AS NEXT_TITLE,
+                               (SELECT MIN(B_NO)
+								FROM BOARD JOIN VOLUNTEER USING(B_NO)
+                                WHERE B_NO<![CDATA[  >  ]]>to_number(substr('${input}', instr('${input}', '*', 1)+1))
+                                <if test="input.substring(0,2) == '전체'">
+									AND b_status='N' and b_category='봉사활동'
+								</if>
+								<if test="input.substring(0,2) != '전체'">
+									AND b_status='N' and b_category='봉사활동' and SUBSTR(V_LOCATION,1,2) = substr('${input}', 1, 2)
+								</if>
+								<if test="input.contains('@모집중')">
+									and V_RECRUITMENT > V_APPLICANT
+								</if>
+								<if test="input.contains('@모집완료')">
+									and (V_RECRUITMENT = V_APPLICANT OR substr(v_day, 12, 10)<![CDATA[  < ]]>SYSDATE)
+								</if> 
+								and substr(v_day, 1, 10) >= to_date(substr('${ input }', instr('${ input }', '#', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+9, 2), 'yyyy-mm-dd')
+					            <if test="!input.contains('~end없음')">
+					            <![CDATA[  
+					            and substr(v_day, 12, 10) <= to_date(substr('${ input }', instr('${ input }', '~', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+9, 2), 'yyyy-mm-dd')
+								]]>
+					            </if>
+								) AS PRE_NO,
+                               (SELECT B_TITLE FROM BOARD WHERE B_NO = (SELECT MIN(B_NO)
+								FROM BOARD JOIN VOLUNTEER USING(B_NO)
+                                WHERE B_NO<![CDATA[  >  ]]>to_number(substr('${input}', instr('${input}', '*', 1)+1))
+                                <if test="input.substring(0,2) == '전체'">
+									AND b_status='N' and b_category='봉사활동'
+								</if>
+								<if test="input.substring(0,2) != '전체'">
+									AND b_status='N' and b_category='봉사활동' and SUBSTR(V_LOCATION,1,2) = substr('${input}', 1, 2)
+								</if>
+								<if test="input.contains('@모집중')">
+									and V_RECRUITMENT > V_APPLICANT
+								</if>
+								<if test="input.contains('@모집완료')">
+									and (V_RECRUITMENT = V_APPLICANT OR substr(v_day, 12, 10)<![CDATA[  < ]]>SYSDATE)
+								</if>
+								and substr(v_day, 1, 10) >= to_date(substr('${ input }', instr('${ input }', '#', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '#', 1)+9, 2), 'yyyy-mm-dd')
+					            <if test="!input.contains('~end없음')">
+					            <![CDATA[  
+					            and substr(v_day, 12, 10) <= to_date(substr('${ input }', instr('${ input }', '~', 1)+1, 4)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+6, 2)
+				                                                    ||substr('${ input }', instr('${ input }', '~', 1)+9, 2), 'yyyy-mm-dd')
+								]]>
+					            </if>
+								)) AS PRE_TITLE,
+                               </if>
+<!--                                LEAD(B_NO, 1) OVER (ORDER BY B_NO DESC) AS NEXT_NO,  -->
+<!--                                LEAD(B_TITLE, 1, '다음글이 없습니다') OVER (ORDER BY B_NO DESC) AS NEXT_TITLE, -->
+<!--                                LAG(B_NO, 1) OVER (ORDER BY B_NO DESC) AS PRE_NO, -->
+<!--                                LAG(B_TITLE, 1, '이전글이 없습니다') OVER (ORDER BY B_NO DESC) AS PRE_TITLE, -->
+                               substr(v_day, 1, instr(v_day, '~')-1) AS DAY1,
+                               substr(v_day,  instr(v_day, '~')+1) AS DAY2,
+                               SUBSTR(V_TIME, 1, INSTR(V_TIME,'~')-1) AS TIME1,
+                               substr(V_TIME,  instr(V_TIME, '~')+1) AS TIME2,
+                               substr(v_location, 1, instr(v_location, '/')-1) as address1,
+                               substr(v_location, instr(v_location, '/')+1) as address2
+            	FROM board
+                        join volunteer using(b_no)
+                WHERE B_STATUS='N'
+        	)
+		WHERE B_CATEGORY ='봉사활동' AND B_NO=to_number(substr('${input}', instr('${input}', '*', 1)+1))
+	</select>
+	
+	<select id="volunteerDetailStandard" resultMap="volunteerListResultSet">
+<!-- 		select B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE -->
+<!-- 		from board -->
+<!-- 			join volunteer using(b_no) -->
+<!-- 		where b_no = #{bNNo} -->
+		SELECT B_NO, B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, 
+				NEXT_NO, NEXT_TITLE, PRE_NO, PRE_TITLE, DAY1, DAY2, TIME1, TIME2, address1, address2
+		FROM (
+            	SELECT B_NO,B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, B_CATEGORY,
+            				   <![CDATA[ 
+                               (SELECT MAX(B_NO) FROM BOARD WHERE B_NO < #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동') AS NEXT_NO, 
+                               (SELECT B_TITLE FROM BOARD WHERE B_NO = (SELECT MAX(B_NO) FROM BOARD WHERE B_NO < #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동')) AS NEXT_TITLE,
+                               (SELECT MIN(B_NO) FROM BOARD WHERE B_NO > #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동') AS PRE_NO,
+                               (SELECT B_TITLE FROM BOARD WHERE B_NO = (SELECT MIN(B_NO) FROM BOARD WHERE B_NO > #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동')) AS PRE_TITLE,
+                               ]]>
+<!--                                LEAD(B_NO, 1) OVER (ORDER BY B_NO DESC) AS NEXT_NO,  -->
+<!--                                LEAD(B_TITLE, 1, '다음글이 없습니다') OVER (ORDER BY B_NO DESC) AS NEXT_TITLE, -->
+<!--                                LAG(B_NO, 1) OVER (ORDER BY B_NO DESC) AS PRE_NO, -->
+<!--                                LAG(B_TITLE, 1, '이전글이 없습니다') OVER (ORDER BY B_NO DESC) AS PRE_TITLE, -->
+                               substr(v_day, 1, instr(v_day, '~')-1) AS DAY1,
+                               substr(v_day,  instr(v_day, '~')+1) AS DAY2,
+                               SUBSTR(V_TIME, 1, INSTR(V_TIME,'~')-1) AS TIME1,
+                               substr(V_TIME,  instr(V_TIME, '~')+1) AS TIME2,
+                               substr(v_location, 1, instr(v_location, '/')-1) as address1,
+                               substr(v_location, instr(v_location, '/')+1) as address2
+            	FROM board
+                        join volunteer using(b_no)
+                WHERE B_STATUS='N'
+        	)
+		WHERE B_CATEGORY ='봉사활동' AND B_NO=#{bNo}
+	</select>	
+		
+	<update id="deleteVolunteer">
+		update board
+		set B_STATUS = 'Y'
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateVolunteer">
+		update volunteer
+		set V_DAY=#{vDay}, V_TIME=#{vTime}, V_LOCATION=#{vLocation},
+			V_AGENCY=#{vAgency}, V_RECRUITMENT=#{vRecruitment}, V_RESPONSIBILITY =#{vResponsibility}, V_PHONE=#{vPhone}
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateBoard">
+		update board
+		set B_TITLE=#{bTitle}, B_CONTENT=#{bContent}, B_MODIFYDATE = sysdate
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="vAppUpdate">
+		update volunteer
+		set V_APPLICANT = V_APPLICANT +1
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="vAppDecountUpdate">
+		update volunteer
+		set V_APPLICANT = V_APPLICANT -1
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="participationStatus">
+		update participation
+		set V_STATUS='Y'
+		where b_no=#{bNo} and m_id=#{mId}
+	</update>
+	
+	<update id="participationStatusY">
+		update participation
+		set V_STATUS='N'
+		where b_no=#{bNo} and m_id=#{mId}
+	</update>
+	
+	<insert id="participationInsert">
+		INSERT INTO PARTICIPATION
+		VALUES (#{bNo}, #{mId}, default, DEFAULT)
+	</insert>
+	
+	<select id="participationSelect" resultMap="participationResultSet">
+		select B_NO, M_ID, V_STATUS
+		from PARTICIPATION
+		where B_NO=#{bNo} and M_ID=#{mId} and V_STATUS='N'
+	</select>
+	
+	<select id="selectCurrentList" resultMap="volunteerListResultSet">
+		<![CDATA[  
+		select b_no, b_title, v_day, v_location
+		from (select b_no, b_title, substr(V_DAY, 1, instr(V_DAY,'~')-1) as v_day, substr(V_LOCATION, 1, 2) as v_location
+		      from board
+			 		join volunteer using(b_no)
+			  where b_status='N'
+			  order by b_no desc)
+		where rownum <= 7
+		]]>
+	</select>
+	
+	<select id="participationYN" resultMap="participationResultSet">
+		select b_no, m_id, V_STATUS
+		from PARTICIPATION
+		where b_no=#{bNo} and m_id=#{mId} and V_STATUS='Y'
+	</select>
+	
+	<select id="mVolunteerDetail" resultMap="volunteerListResultSet">
+		select B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RESPONSIBILITY, V_PHONE, b_no
+		from board
+		     join volunteer using(b_no)
+		where b_no=#{bNo}
+	</select>
+	
+	<select id="volunteerEndList" resultMap="participationResultSet2">
+	<![CDATA[
+	SELECT b_no, B_TITLE, m_id, v_day, v_location, VR_STATUS
+		FROM (select b_no, B.B_TITLE, P.m_id, substr(V.v_day, 12, 10) as v_day, substr(V.V_LOCATION, 1, 2) as v_location, VR_STATUS
+                  from PARTICIPATION P
+			 		JOIN VOLUNTEER V USING(B_NO)
+                    join BOARD B USING(B_NO)
+                   WHERE TO_DATE(substr(V.v_day, 12, 10)) < SYSDATE AND P.M_ID=#{loginUserId} and v_status = 'N'
+              )
+    ]]>
+	</select>
+	
+	<insert id="vrInsert">
+		insert all into board VALUES(SEQ_BOARD_NO.nextval, #{mId}, '봉사활동후기', '봉사활동후기', '봉사활동후기', default, default, default)
+				   into VOLUNTEERREVIEW VALUES(seq_BOARD_NO.nextval, #{bNo} ,#{mId}, #{vrTitle}, #{vrContent},sysdate, sysdate, default)
+		select * from dual
+	</insert>
+	
+	<insert id="insertAllFiles">
+		insert into files 
+		values(SEQ_FILES_NO.nextval, SEQ_BOARD_NO.currval, #{fPath}, #{fOriginName}, #{fChangeName}, #{fLevel}, DEFAULT)
+	</insert>
+	
+	<insert id="vrinsertAllFiles">
+		insert into files 
+		values(SEQ_FILES_NO.nextval, #{bNo}, #{fPath}, #{fOriginName}, #{fChangeName}, #{fLevel}, DEFAULT)
+	</insert>
+	
+	<update id="updateVRStatus">
+		update participation
+		set VR_STATUS='Y'
+		where b_no=#{bNo} and m_id=#{mId}
+	</update>
+	
+	<select id="vReviewDetail" resultMap="VolunteerReviewResultSet">
+		SELECT VR_NO,B_NO,M_ID,VR_TITLE,VR_CONTENT
+		FROM VOLUNTEERREVIEW
+		WHERE B_NO=#{bNo} and m_id=#{mId} and vre_status='N'
+	</select>
+	
+	<select id="selectFile" resultMap="filesResultSet">
+		select *
+		from files
+		where b_no=#{vrNo} and f_status='N'
+	</select>
+	
+	<update id="vrUpdate">
+		update VOLUNTEERREVIEW
+		set VR_TITLE=#{vrTitle}, VR_CONTENT=#{vrContent}, VR_MODIFYDATE=sysdate
+		where b_no=#{bNo} and m_id=#{mId}
+	</update>
+	
+	<update id="updateFiles">
+		update files 
+		set f_originname = #{fOriginName}, f_changename = #{fChangeName}
+		where f_num = #{fNum}	
+	</update>
+	
+	<select id="fileBNoSelect" resultMap="filesResultSet">
+		select DISTINCT b_no
+		from files
+		where b_no=#{vrNo}
+	</select>
+	
+	<update id="vrDelete">
+		update VOLUNTEERREVIEW
+		set vre_status = 'Y'
+		where VR_NO = ${vrNo}
+	</update>
+	
+	<update id="vrFilesDelete">
+		update files
+		set f_status = 'Y'
+		where b_no = ${vrNo}
+	</update>
+	
+	<update id="pVrStatusUpdate">
+		update PARTICIPATION
+		set VR_STATUS = 'N'
+		where b_no=#{bNo} and m_id=#{mId}
+	</update>
+	
+	<select id="selectVRList" resultMap="volunteerListResultSet">
+		select distinct b_no, b_title,v_location, v_day, V_APPLICANT, v_count
+		from board
+		    join volunteer using(b_no)
+		    join volunteerreview using(b_no)
+		where VRE_STATUS='N'
+	</select>
+	
+	<select id="vrListSelect" resultMap="VolunteerReviewResultSet">
+		select vr_no, b_no, m_id, vr_title, VR_DATE, m_nickname
+		from volunteerReview
+        	join member using (m_id)
+		where b_no=#{bNo} and VRE_STATUS='N'
+		order by b_no desc
+	</select>
+	
+	<select id="vReviewDetailList" resultMap="VolunteerReviewResultSet">
+		select vr_no, b_no, m_id, vr_title, vr_content
+		from volunteerreview
+		where vr_no=#{vrNo} and VRE_STATUS='N'
+	</select>
+	
+	<update id="vrBoardDelete">
+		update board
+		set b_status='Y'
+		where b_no=#{vrNo}
+	</update>
+	
+	<update id="updateVolunteerCount">
+		update volunteer
+		set v_count = v_count + 1
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateVolunteerCountDelete">
+		update volunteer
+		set v_count = v_count - 1
+		where b_no=#{bNo}
+	</update>
+	
+	<select id="volunteerDetailvr" resultMap="volunteerListResultSet">
+		SELECT B_NO, B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, 
+				NEXT_NO, NEXT_TITLE, PRE_NO, PRE_TITLE
+		FROM (
+            	SELECT B_NO,B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, B_CATEGORY,
+            				   <![CDATA[ 
+                                (SELECT MAX(B_NO) FROM BOARD join volunteer using(b_no) WHERE B_NO < #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0) AS NEXT_NO, 
+								(SELECT B_TITLE FROM BOARD join volunteer using(b_no)  WHERE B_NO = (SELECT MAX(B_NO) FROM BOARD join volunteer using(b_no) WHERE B_NO < #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0)) AS NEXT_TITLE,
+								(SELECT MIN(B_NO) FROM BOARD join volunteer using(b_no) WHERE B_NO > #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0) AS PRE_NO,
+								(SELECT B_TITLE FROM BOARD join volunteer using(b_no) WHERE B_NO = (SELECT MIN(B_NO) FROM BOARD join volunteer using(b_no) WHERE B_NO > #{bNo} AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0)) AS PRE_TITLE
+                               ]]>
+            	FROM board
+                        join volunteer using(b_no)
+                WHERE B_STATUS='N'
+        	)
+		WHERE B_CATEGORY ='봉사활동' AND B_NO=#{bNo}
+	</select>
+	
+	<select id="volunteerDetailKeywordvr" resultMap="volunteerListResultSet">
+		SELECT B_NO, B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, v_count,
+				NEXT_NO, NEXT_TITLE, PRE_NO, PRE_TITLE
+		FROM (
+            	SELECT B_NO,B_TITLE, B_CONTENT, V_DAY, V_TIME, V_LOCATION, V_AGENCY, V_RECRUITMENT, V_APPLICANT, V_RESPONSIBILITY, V_PHONE, B_CATEGORY, v_count,
+            				   <![CDATA[ 
+                                (SELECT MAX(B_NO) FROM BOARD join volunteer using(b_no) join volunteerreview using(b_no) WHERE B_NO < to_number(substr('${input}', 0, instr('${input}', '@')-1)) AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0 and VR_TITLE like '%'||substr('${input}', instr('${input}', '@')+1)||'%') AS NEXT_NO, 
+								(SELECT distinct B_TITLE FROM BOARD join volunteer using(b_no) join volunteerreview using(b_no) WHERE B_NO = (SELECT MAX(B_NO) FROM BOARD WHERE B_NO < substr('${input}', 0, instr('${input}', '@')-1) AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0 and VR_TITLE like '%'||substr('${input}', instr('${input}', '@')+1)||'%')) AS NEXT_TITLE,
+								(SELECT MIN(B_NO) FROM BOARD join volunteer using(b_no) join volunteerreview using(b_no) WHERE B_NO > to_number(substr('${input}', 0, instr('${input}', '@')-1)) AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0 and VR_TITLE like '%'||substr('${input}', instr('${input}', '@')+1)||'%') AS PRE_NO,
+								(SELECT distinct B_TITLE FROM BOARD join volunteer using(b_no) join volunteerreview using(b_no) WHERE B_NO = (SELECT MIN(B_NO) FROM BOARD WHERE B_NO > substr('${input}', 0, instr('${input}', '@')-1) AND B_STATUS='N' and B_CATEGORY='봉사활동' and v_count > 0 and VR_TITLE like '%'||substr('${input}', instr('${input}', '@')+1)||'%')) AS PRE_TITLE
+                               ]]>
+            	FROM board
+                        join volunteer using(b_no)
+                WHERE B_STATUS='N'
+        	)
+		WHERE B_CATEGORY ='봉사활동' AND B_NO=substr('${input}', 0, instr('${input}', '@')-1)
+	</select>
+	
+	<select id="getListSearchCount" resultType="_int">
+		select count(*)
+		from board
+			join volunteer using(b_no)
+		where b_status='N' and b_title like '%'||'${keywordInput}'||'%'
+	</select>
+	
+	<select id="selectSearchVRList" resultMap="volunteerListResultSet">
+		select distinct b_no, b_title,v_location, v_day, V_APPLICANT, v_count
+		from board
+			join volunteer using(b_no)
+		where b_status='N' and b_title like '%'||'${keywordInput}'||'%' and v_count >  0
+		order by b_no desc
+	</select>
+	
+	<resultMap type="Volunteer" id="volunteerListResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="B_TITLE" property="bTitle"/>
+		<result column="B_CONTENT" property="bContent"/>
+		<result column="B_CATEGORY" property="bCategory"/>
+		<result column="B_DATE" property="bDate"/>
+		<result column="B_MODIFYDATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+		<result column="V_DAY" property="vDay"/>
+		<result column="V_TIME" property="vTime"/>
+		<result column="V_LOCATION" property="vLocation"/>
+		<result column="V_AGENCY" property="vAgency"/>
+		<result column="V_RECRUITMENT" property="vRecruitment"/>
+		<result column="V_APPLICANT" property="vApplicant"/>
+		<result column="V_RESPONSIBILITY" property="vResponsibility"/>
+		<result column="V_PHONE" property="vPhone"/>
+		<result column="v_count" property="vCount"/>
+	</resultMap>
+	
+	<resultMap type="Participation" id="participationResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="V_STATUS" property="vStatus"/>
+		<result column="VR_STATUS" property="vRStatus"/>
+	</resultMap>
+	
+ 	<resultMap type="Participation" id="participationResultSet2">
+		<id column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="V_STATUS" property="vStatus"/>
+		<result column="b_title" property="bTitle"/>
+		<result column="v_Location" property="bLocation"/>
+		<result column="V_RECRUITMENT" property="vRecruitment"/>
+		<result column="V_APPLICANT" property="vApplicant"/>
+		<result column="v_day" property="vDay"/>
+		<result column="VR_STATUS" property="vRStatus"/>
+	</resultMap>
+	
+ 	<resultMap type="VolunteerReview" id="VolunteerReviewResultSet">
+		<id column="VR_NO" property="vrNo"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="VR_TITLE" property="vrTitle"/>
+		<result column="VR_CONTENT" property="vrContent"/>
+		<result column="VR_DATE" property="vrDate"/>
+		<result column="VR_MODIFYDATE" property="vrModifyDate"/>
+		<result column="VRE_STATUS" property="vrStatus"/>
+		<result column="m_nickname" property="mNickname"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.green.common.Files" id="filesResultSet">
+		<id column="F_NUM" property="fNum"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="F_PATH" property="fPath"/>
+		<result column="F_ORIGINNAME" property="fOriginName"/>
+		<result column="F_CHANGENAME" property="fChangeName"/>
+		<result column="F_LEVEL" property="fLevel"/>
+		<result column="F_STATUS" property="fStatus"/>
+	</resultMap>
+
+</mapper>

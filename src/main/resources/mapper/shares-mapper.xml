@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sharesMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from shares
+		    join board using(b_no)
+		where b_status = 'N'
+	</select>
+
+	<select id="selectSList" resultMap="sharesResultSet">
+		select *
+		from slist
+		where b_status = 'N'
+		order by b_date desc	
+	</select>
+	
+	<select id="selectFList" resultMap="filesResultSet">
+		select *
+		from files 
+			join slist on (slist.b_no = files.b_no)
+		where f_status = 'N' and f_level = 0
+		order by b_date desc	
+	</select>
+	
+	<resultMap type="com.kh.green.shares.model.vo.Shares" id="sharesResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="B_TITLE" property="bTitle"/>
+		<result column="B_CONTENT" property="bContent"/>
+		<result column="B_CATEGORY" property="bCategory"/>
+		<result column="B_DATE" property="bDate"/>
+		<result column="B_MODIFYDATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+		<result column="S_STATUS" property="sStatus"/>
+		<result column="S_ADDRESS" property="sAddress"/>
+		<result column="S_STOCK" property="sStock"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.green.common.Files" id="filesResultSet">
+		<id column="F_NUM" property="fNum"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="F_PATH" property="fPath"/>
+		<result column="F_ORIGINNAME" property="fOriginName"/>
+		<result column="F_CHANGENAME" property="fChangeName"/>
+		<result column="F_LEVEL" property="fLevel"/>
+		<result column="F_STATUS" property="fStatus"/>
+	</resultMap>
+
+	<insert id="insertThBoard">
+		insert into board
+		values(seq_BOARD_NO.nextval, #{mId}, #{bTitle}, #{bContent}, 'shares', sysdate, sysdate, default)
+	</insert>
+	
+	<insert id="insertShares">
+		insert into shares
+		values(seq_BOARD_NO.currval, default, #{sAddress}, #{sStock}, default)
+	</insert>
+	
+	<insert id="insertAllFiles">
+		insert into files 
+		values(SEQ_FILES_NO.nextval, SEQ_BOARD_NO.currval, #{fPath}, #{fOriginName}, #{fChangeName}, #{fLevel}, DEFAULT)
+	</insert>
+
+
+<!-- 	<insert id="insertFiles" parameterType="java.util.List">시퀀스가있는 insert all -->
+<!-- https://m.blog.naver.com/PostView.nhn?blogId=ljh0326s&logNo=221305741201&proxyReferer=https:%2F%2Fwww.google.com%2F -->
+<!-- 시퀀스가있는 insert all -->
+<!-- https://haenny.tistory.com/126 -->
+	<update id="insertFiles" parameterType="java.util.List">
+		insert into files
+		select SEQ_FILES_NO.NEXTVAL, T.* 
+		from(
+			<foreach item="item" collection="list" separator="union all ">
+				select SEQ_BOARD_NO.CURRVAL, #{item.fPath}, #{item.fOriginName}, #{item.fChangeName}, #{item.fLevel}, DEFAULT
+				from dual
+			</foreach>
+		) T
+	</update>
+<!-- 	<insert id="insertFiles"> -->
+<!-- 		INSERT INTO files -->
+<!-- 		VALUES -->
+<!-- 		<foreach item="item" collection="list"> -->
+<!-- 			(SEQ_FILES_NO.NEXTVAL, SEQ_BOARD_NO.CURRVAL, #{item.fPath}, #{item.fOriginName}, #{item.fChangeName}, #{item.fLevel}, DEFAULT) -->
+<!-- 		</foreach> -->
+<!-- 	</insert> -->
+	
+<!-- 			insert -->
+<!-- 		INTO FILES -->
+<!-- 		<foreach collection="list" item="item" separator="UNION ALL"> -->
+<!-- 		select  -->
+<!-- 		(select SEQ_FILES_NO.NEXTVAL, SEQ_BOARD_NO.CURRVAL, #{item.fPath}, #{item.fOriginName}, #{item.fChangeName}, #{item.fLevel}, DEFAULT -->
+<!-- 		from dual) -->
+<!-- 		</foreach> -->
+
+	<select id="selectBoard" resultMap="sharesResultSet">
+		select *
+		from slist
+		where b_no=#{bNo} and s_status='N'
+	</select>
+	
+	<select id="selectFile" resultMap="filesResultSet">
+		select *
+		from files
+		where b_no=#{bNo} and f_status='N'
+	</select>
+	
+	<insert id="insertReply">
+		INSERT INTO COMMENTS VALUES
+		(SEQ_COMMENTS_NO.NEXTVAL, #{bNo}, #{mId}, #{cContent}, SYSDATE, SYSDATE, DEFAULT, DEFAULT)
+	</insert>
+	
+	<resultMap type="com.kh.green.shares.model.vo.Comments" id="commentsResultSet">
+		<id column="C_NO" property="cNo"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="C_CONTENT" property="cContent"/>
+		<result column="C_DATE" property="cDate"/>
+		<result column="C_MODIFYDATE" property="cModifyDate"/>
+		<result column="C_STATUS" property="cStatus"/>
+		<result column="C_REPORT" property="cReport"/>
+	</resultMap>
+	
+	<select id ="selectReplyList" resultMap="commentsResultSet">
+		select *
+		from comments
+		where b_no = #{bNo} and c_status='N'
+		order by c_no desc
+	</select>
+	
+	<update id="commentsDelete">
+		update comments set c_status='Y'
+		where c_no=#{cNo} and m_id=#{mId}
+	</update>
+	
+	<update id="modifyComments">
+		update comments
+		set c_content=#{cContent}
+		where c_no=#{cNo}
+	</update>
+	
+	
+	
+	
+	<update id="updateThBoard">
+		update board
+		set b_title=#{bTitle}, b_content=#{bContent}, 
+		b_modify_date=sysdate
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateShares">
+		update shares
+		set s_address=#{sAddress}, s_stock=#{sStock}
+		where b_no=#{bNo}
+	</update>
+	
+	
+	
+	
+	
+	<update id="updateAllBoard">
+		update board
+		set b_title=#{bTitle}, b_content=#{bContent}, b_modifydate=sysdate
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateAllShares">
+		update shares
+		set s_address=#{sAddress}, s_stock=#{sStock}
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateApplyShares">
+		update shares
+		set s_stock=s_stock-1
+		where b_no=#{bNo}
+	</update>
+	
+	<update id="updateAllFiles">
+		<if test="fNum != null">
+		update files
+		set f_path=#{fPath}, 
+			<if test="fOriginName != null">
+			f_originName=#{fOriginName},
+			</if> f_changeName=#{fChangeName}
+		where b_no=#{bNo} and f_level=#{fLevel}
+		</if>
+<!-- 		update files -->
+<!-- 		set btitle=#{bTitle}, bcontent=#{bContent},  -->
+<!-- 			<if test="originalFileName != null"> -->
+<!-- 			original_fileName=#{originalFileName}, -->
+<!-- 			</if> -->
+<!-- 			rename_fileName=#{renameFileName}, b_modify_date=sysdate -->
+<!-- 		where b_no=#{bNo} -->
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	<insert id="insertApply">
+		insert into apply
+		values(#{bNo}, #{sApplicant}, #{applyInfo})
+	</insert>
+	
+
+	<update id="updateApply">
+		update apply
+		set b_no=#{bNo}, s_applicant=#{sApplicant}, a_applyInfo=#{applyInfo}
+	</update>
+	
+	<delete id="deleteApply">
+		delete from apply
+		where b_no=#{bNo} and s_applicant=#{sApplicant} and a_applyInfo=#{applyInfo}
+	</delete>
+	
+	<update id="updateApplyDeleteShares">
+		update shares
+		set s_stock=s_stock+1
+		where b_no=#{bNo}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<resultMap type="com.kh.green.shares.model.vo.Apply" id="apply">
+		<result column="B_NO" property="bNo"/>
+		<result column="S_APPLICANT" property="sApplycant"/>
+		<result column="A_APPLYINFO" property="applyInfo"/>
+	</resultMap>
+
+	<update id="deleteBoard">
+		update slist set b_status='Y'
+		where b_no=#{bNo}
+	</update>
+	
+	<select id="selectSearchResultCount" resultType="_int">
+	
+		select count(*)
+		from shares
+		    join board using(b_no)
+		where b_status = 'N'
+		<if test="writer != null">
+			and m_id = #{writer}
+		</if>
+		<if test="title != null">
+			and b_title like '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			and b_content like '%' || #{content} || '%'
+		</if>
+	</select>
+	
+	<select id="selectSearchTList" resultMap="sharesResultSet">
+		select * 
+		from slist
+		where b_status = 'N'
+		<choose>
+			<when test="writer != null">
+				and m_id = #{writer}
+			</when>
+			<when test="title != null">
+				and b_title like '%' || #{title} || '%'
+			</when>
+			<otherwise>
+				and b_content like '%' || #{content} || '%'
+			</otherwise>
+		</choose>
+<!-- 		order by bid desc -->
+	</select>
+	
+	<select id="selectSearchFList" resultMap="filesResultSet">
+		select *
+		from files
+			join slist on (slist.b_no = files.b_no)
+		where f_status = 'N' and f_level = 0
+		<choose>
+			<when test="writer != null">
+				and m_id = #{writer}
+			</when>
+			<when test="title != null">
+				and b_title like '%' || #{title} || '%'
+			</when>
+			<otherwise>
+				and b_content like '%' || #{content} || '%'
+			</otherwise>
+		</choose>
+<!-- 		order by bno desc -->
+	</select>
+	
+	<resultMap type="com.kh.green.shares.model.vo.Apply" id="applyResultSet">
+		<result column="B_NO" property="bNo"/>
+		<result column="S_APPLICANT" property="sApplicant"/>
+		<result column="A_APPLYINFO" property="ApplyInfo"/>
+	</resultMap>
+	
+	<select id="selectApply" resultMap="applyResultSet">
+		select *
+		from apply
+		where b_no=#{bNo} and s_applicant=#{mId}
+<!-- 		where b_no=#{bNo} and s_applicant=#{mId} and a_applyInfo='shares' -->
+	</select>
+	
+	<select id="sharesCurrentList" resultMap="sharesResultSet">
+		<![CDATA[  
+		select b_no, b_title, b_modifydate, substr(s_address, 1, 2) as s_address
+		from slist
+		where rownum <= 7 and b_status = 'N'
+		order by b_no desc
+		]]>
+	</select>
+	
+</mapper>

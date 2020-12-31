@@ -1,0 +1,146 @@
+@charset "UTF-8";
+	#search_box{
+		padding-top: 20px;
+     	text-align: center;
+     	height: 50px;
+     }
+     
+     #search_box select{			/* 상품 카테고리 선택 */
+     	width: 130px;	
+     	height: 30px;
+     	margin: 0px 20px 0px 0px;
+     	padding: 0px 0px 0px 5px;
+     }
+     
+     #search_text{					/* 상품 검색 칸 */
+    	width: 500px;
+    	height: 30px; 
+    	margin: 0px 10px 0px 0px;
+    	padding: 0px 0px 0px 10px;
+     }
+     		
+     #search_btn{					/* 검색 버튼 */
+     	background : rgb(99, 165, 55);
+     }
+     
+     #insert_btn{
+     	clear: all;					/* 등록 버튼 */
+     	float: right;
+     	background : rgb(153, 203, 56);
+     }
+     
+     .btn{
+     	padding: 5px;
+     	width: 75px;
+     	height: 35px;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border: none;
+		border-radius: 5px;
+     }
+     
+     .btn:hover{
+     	cursor: pointer;
+     }
+     
+     #line{			/* hr 선 */
+		margin-top: 20px;
+ 	   	border: 3px solid rgb(99, 165, 55);
+
+     }
+	
+
+    .products{		
+    
+    	margin: 20px;
+    	display: inline-block;
+    	float: left;
+    	width: 330px;
+    	height: 400px;
+     	text-align: center;
+    	border: 2px solid lightgray;
+    	border-radius: 5px;
+    	}
+    			
+/*     	width: 330px; */
+/*     	height: 350px; */
+/*     	float: left; */
+/*     	border: 2px solid lightgray; */
+/*     	list-style: none; */
+/*     	margin: 45px; */
+/*     	border-radius: 5px; */
+    
+    .product_info{			/* 상품 설명 */
+    	text-align: center;
+    	width: 280px;
+    	margin: auto;
+    	border-top: 1px solid #55937D;
+    }
+    
+    .productImg{
+     	width: 280px;
+     	height: 200px;
+     	margin: 10px;
+    }
+    
+    
+    .pagination{				/* 페이징 버튼 영역 */
+    	margin-left: 45%;
+    	margin-top: 5%;
+     	margin-bottom: -10%; 
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    }
+    
+    .page, .prev_btn, .next_btn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top;
+    	margin-right: -1px;
+    }
+    
+    .prev_btn{
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .next_btn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+    
+/*     #board{ */
+/*         font-size: 15px; */
+/*     	padding: 10px; */
+/*      	margin: 0px 10px 0px 250px;  */
+/*     	text-decoration: none; */
+    	
+/*     	color: black; */
+/*     	background: rgb(99, 165, 55); */
+/*     	border-radius: 5px; */
+/*     } */
+    
+.products:hover {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  animation-name: example;
+  animation-duration: 0.25s;
+  border: 2px solid #80b280;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+@keyframes example {
+    0%   {border: 2px solid #e6f0e6;}
+    25%  {border: 2px solid #cce0cc;}
+    50%  {border: 2px solid #b3d1b3;}
+    100% {border: 2px solid #99c199;}
+}

@@ -1,0 +1,165 @@
+@charset "UTF-8";
+    
+    /*  화면에 녹색 줄 */
+	.greenDiv{
+		height : 4px;
+		width: 100%;
+		background : rgb(99, 165, 55);
+		border-radius: 10px;
+		margin-top: -10px;
+	}
+	
+	/* 폼안에 제일 큰 div */
+	#formDiv{
+		margin: 0px 5%;
+	}
+	
+	/* 봉사활동명 */
+	#vTitleDiv{
+		width: 60px;
+		background: red;
+	}
+	#vTitle{
+		width: 500px;
+		height: 50px;
+	}
+
+	/*  화면에 연두색 줄 */
+	.yellowGreenDiv{
+		height : 4px;
+		width : 100%;
+		background : rgb(193, 223, 135);
+		border-radius: 10px;
+	}
+	
+	.whiteDiv{
+		height: 3px;
+		width: 100%;
+		background: white;
+	}
+	
+	.vInfomation{
+		display: flex;
+		border: 1px solid rgb(224, 224, 224);
+	}
+	
+	.vInfoTitle{
+		flex: 4;
+		text-align: center;
+		background: rgb(224, 224, 224);
+		font-size: 16px;
+		height: 45px;
+		line-height: 40px;
+	}
+	
+	.vInfoContent{
+		flex: 6;
+		text-align: center;
+		line-height: 40px;
+	}
+	.vInfoContentInput{
+		width: 100%;
+		height: 100%;
+	}
+	
+	/* 봉사활동 장소 */
+	#vInfoTitle2{
+		flex: 2;
+		text-align: center;
+		background: rgb(224, 224, 224);
+		font-size: 16px;
+		height: 80px;
+		line-height: 80px;
+	}
+	#vInfoContent2{
+		flex: 8;
+	}
+	
+	/* 활동내용+지도api */
+	#vInfoDiv{
+		width: 100%;
+		height: 410px;
+		display: flex;
+	}
+    
+    /* 활동내용 입력란 */
+    #vContent{
+		flex:6;
+    }
+    #vContentTextarea{
+    	width: 90%;
+    	height: 90%;
+    	resize: none;
+    	padding: 10px 10px 10px 10px;
+    }
+    /* 주소 검색 div */
+    #searchAddress{
+    	height: 40px;
+    	line-height: 40px;
+		margin-left: 27px;
+		
+    }
+    /* 상세주소 div */
+    #detailAddress{
+		height: 40px;
+		line-height: 40px;
+		margin-left: 27px;
+    }
+    .tableContent{
+    	height: 30px;
+    	width: 835px;
+    }
+    #detailText{
+    	margin-left: 12px;
+    }
+    #address1{
+    	border: none;
+    	outline: none;
+    }
+    
+    /* 주소 검색버튼 */
+    #searchBtn{
+    	background: rgb(224, 224, 224);
+    	border: 1px solid black;
+    	font-size: 16px;
+    	height: 30px;
+    	border-radius: 5px;
+    }
+    
+    /*  지도 api */
+    #mapApi{
+    	flex:4;
+    	width: 100%;
+    	height: 95%;
+    }
+    
+    #submitDiv{
+		width: 100%;
+		text-align: center;
+    }
+    
+    .responInfo{
+    	height: 25px;
+    }
+    
+    #addBtn{
+    	color : white;
+    	background : rgb(193, 223, 135);
+    	border: none;
+    	width : 70px;
+    	height: 40px;
+    	font-size: 16px;
+    	font-weight: bold;
+		border-radius: 10px;
+    }
+    
+    #backList{
+   	 	color : white;
+    	background : rgb(224, 224, 224);
+    	border: none;
+    	width : 70px;
+    	height: 40px;
+    	font-size: 16px;
+    	font-weight: bold;
+		border-radius: 10px;
+    }

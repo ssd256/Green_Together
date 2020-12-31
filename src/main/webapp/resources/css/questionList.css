@@ -1,0 +1,74 @@
+@charset "UTF-8";
+    .category_tab{						/* 카테고리 선택 영역 */
+    	margin: 80px 0px 20px 10px;
+    	width:500px; 	
+    }
+    
+    .category{							/* 카테고리 탭 */
+    	padding: 10px;
+    	margin: 0px -3px 0px 0px;
+    	width: 100px;
+    }
+    	
+    #insert_btn{						/* 등록 버튼 */
+    	padding: 5px;
+    	width: 50px;
+    	float: right;
+    	margin: 10px 20px 0px 0px;
+    }
+    
+    .category, #insert_btn{						
+    	background : rgb(153, 203, 56);
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border: none;
+		border-radius: 5px;
+    }
+    
+    .category, #insert_btn:hover{
+    	cursor: pointer;
+   	}
+    
+    qna table {							/* 질문, 답변 글씨 */
+    	font-size:18px;
+    }
+    
+    .f_ask_td, .f_answer_td{			/* 목록보기 Q, A칸*/
+     	padding: 0px 0px 0px 50px; 
+		width: 100px;
+		color: rgb(41, 128, 185);
+		font-weight: bold;
+    }
+    
+    .s_ask_td, .s_answer_td{			/* 목록보기 질문 칸 */
+    	width: 1100px;
+    }
+    
+    hr{				
+    	margin: 20px 0px 20px 0px;
+    }
+    
+	#more{								/* ∨ 더보기 */
+		text-align: center;
+		display: inline-block;
+		margin-left: 50%;
+		padding: 20px 0px 50px 0px;
+		width: 100px;
+		font-size: 18px;
+	}
+	
+	table td span{
+		text-decoration: none;
+		color: black;
+		font-size: 20px;
+	}
+	
+	table td span:hover{
+		cursor: pointer;
+	}
+	
+	#more a{
+		text-decoration: none;
+		color: rgb(41, 128, 185);
+	}

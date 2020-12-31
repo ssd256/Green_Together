@@ -1,0 +1,145 @@
+@charset "UTF-8";
+   
+ 	#sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: -100px;
+	}
+    
+    #carthr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 145px;
+    	margin-top: -15px;
+    	margin-left: -114px; 
+   	}
+   	
+   	.cartDiv{	/* 요소 전체다이브 */	
+   		width: 1200px; 
+   		margin: auto;
+   		margin-top: 50px;
+   		margin-left: 150px;
+   	}
+   	
+   	.cartDiv img{
+   		width: 80px; height: 120px;
+   	}
+   	
+	.cart_table{
+	   	width: 1200px;
+	   	border-collapse: collapse;/* 선 여백 없애기 */ 
+   }
+	
+	.cart_table th{
+		height: 50px; 
+	   	background: rgba(153, 203, 56, 0.5); 
+   }
+   	
+   .cart_table td{
+	    height: 150px;
+	   	border-bottom: 1px solid rgb(127, 127, 127);
+	   	font-weight: bold;
+   }
+   
+   .cart_table th:nth-child(1){		/* 체크박스 */
+   		width: 150px;
+   }
+   
+   .cart_table td:nth-child(1){		/* 체크박스 */
+   		width: 150px;
+   		text-align: center;
+   }
+   
+   .cart_table td:nth-child(2){		/* 상품 정보 */
+   		padding-left: 100px;
+   		width: 150px;
+   }
+   
+   .cart_table td:nth-child(4){		/* 상품 금액 */
+   		width: 200px;
+   		text-align: center;
+   }
+   
+   .cart_table td:nth-child(5){		/* 삭제 버튼 */
+   		width: 120px;
+   		text-align: center;
+   }
+   
+    .cartInfo{/* 마지막 가격정보부분 */
+		height: 100px;    	
+	    background: rgba(153, 203, 56, 0.5); 
+	    font-size: 20px;
+	    font-weight: bold;
+	    border-bottom: none;
+   }
+   
+   .img_area{
+   		height: 150px;
+   	}
+   	
+   	.img_area > img:hover{
+   		cursor: pointer;
+   	}
+   	
+   /* 가격 표 선 추가 */
+   .price{
+	   width: 130px;
+	   border-left: 1px solid rgb(127, 127, 127);
+	   font-weight: bold;
+	   font-size: 18px;
+   }	
+   
+   .orderInfo{
+	   font-size: 18px;
+	   font-weight: bold;
+   }
+   
+   #price, #total{
+   		border: none;
+   		background: rgba(153, 203, 56, 0); 
+   		font-size: 22px;
+	    font-weight: bold;
+	    height: 20px;
+	    width: 120px;
+   }
+   
+   input[name=cCount]{
+   		text-align: right;
+   		font-size: 17px;
+   		width: 60px;
+   }
+   
+   #price{
+   		text-align: left;
+   }
+   
+   #total{
+   		text-align: right;
+   }
+   
+   .selectDelete{
+	   color: white;
+   	   font-weight: bold;
+   	   background: rgb(192, 57, 43, 0.85);
+	   width: 75px; height: 33px;
+	   margin-top: 20px;
+	   border-radius: 5px;
+	   cursor: pointer;
+	   border: none;
+   }
+   
+	#productListBtn, #submitBtn{
+	   	display: inline-block;
+	   	border: none;
+	   	border-radius:5px;
+	   	background: rgb(99, 165, 55);
+	   	color: white;
+	   	width: 260px; height: 60px;
+	   	cursor: pointer;
+	   	font-size: 20px;
+	   	margin-top: 80px; margin-left: 100px;
+   	}   	
+   	
+   	#productListBtn{
+	   	margin-left: 300px;
+	   	background: rgb(193, 223, 135);
+   	}

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="askedMapper">
+
+	<resultMap type="Question" id="askedListResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="Q_CATEGORY" property="qCategory"/>
+		<result column="M_ID" property="mId"/>
+		<result column="M_NICKNAME" property="mNickname"/>
+		<result column="B_TITLE" property="bTitle"/>
+		<result column="B_CONTENT" property="bContent"/>
+		<result column="B_CATEGORY" property="bCategory"/>
+		<result column="B_DATE" property="bDate"/>
+		<result column="B_MODIFYDATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+		
+		<result column="PREV_NO" property="prevNo"/>
+		<result column="PREV_TITLE" property="prevTitle"/>
+		<result column="PREV_CATEGORY" property="prevCate"/>
+		<result column="PREV_NICKNAME" property="prevNickname"/>
+		<result column="PREV_DATE" property="prevDate"/>
+		
+		<result column="NEXT_NO" property="nextNo"/>
+		<result column="NEXT_TITLE" property="nextTitle"/>
+		<result column="NEXT_CATEGORY" property="nextCate"/>
+		<result column="NEXT_NICKNAME" property="nextNickname"/>
+		<result column="NEXT_DATE" property="nextDate"/>
+	</resultMap>
+		
+	<select id="getListCount" resultType="_int">
+		select count(*) 
+		from board
+		where b_status = 'N' and b_category = '문의사항'
+	</select>
+	
+	<select id="selectList" resultMap="askedListResultSet">
+         select b.b_no, q.q_category, m_nickname, b_title, b_content, b_category, b_ModifyDate, b_date
+         ,(select count(*) from comments where b_no=b.b_no and c_status='N') AS recnt
+		from board b
+			 join member m
+            on (b.m_id = m.m_id)
+        	join question q
+            on (q.b_no = b.b_no)
+			<if test="categoryTab == '전체'">
+				where b_status='N' and b_category = '문의사항'
+        	</if>
+        	<if test="categoryTab != '전체'">
+        	where b_status='N' and b_category = '문의사항' and q_category='${categoryTab}'
+        	</if> 
+        	order by b_no desc 
+	</select>
+	
+	<insert id="insertBoard">
+		insert into board values(SEQ_BOARD_NO.nextval, '${mId}', '${bTitle}', '${bContent}', '문의사항', sysdate, sysdate, 'N')
+	</insert>
+	
+	<insert id="insertAsked">
+		insert into question values(SEQ_BOARD_NO.currval, '${qCategory}')
+	</insert>
+	
+	
+	<!-- 문의사항 상세보기 -->
+	<select id="selectAsked" resultMap="askedListResultSet">
+	select b_no, b_title, b_content, b_category, q_category, m_nickname, b_status, b_modifydate, b_date, 
+      (select count(*) from comments where b_no=#{bNo} and c_status='N') AS recnt, PREV_NO, PREV_TITLE, PREV_CATEGORY, PREV_NICKNAME, PREV_DATE, NEXT_NO, NEXT_TITLE, NEXT_CATEGORY, NEXT_NICKNAME, NEXT_DATE
+			from
+	        (select  b_no, b_title, b_content, b_category, q_category, m_nickname, b_status, b_modifydate, b_date, 
+	         <![CDATA[ 
+	         (select max(b_no) from board where b_no < #{bNo} and b_status='N' and b_category='문의사항') AS PREV_NO, 
+	         (select b_title from board where b_no = (select max(b_no) from board where b_no < #{bNo} and b_status='N' and b_category='문의사항')) AS PREV_TITLE,
+	         (select q_category from board join question using(b_no) where b_no = (select max(b_no) from board where b_no < #{bNo} and b_status='N' and b_category='문의사항')) AS PREV_CATEGORY,
+	         (select m_nickname from board b join member m on b.m_id = m.m_Id where b_no = (select max(b_no) from board where b_no < #{bNo} and b_status='N' and b_category='문의사항')) AS PREV_NICKNAME,
+	         (select b_date from board where b_no = (select max(b_no) from board where b_no < #{bNo} and b_status='N' and b_category='문의사항')) AS PREV_DATE,
+	         (select min(b_no) from BOARD where B_NO > #{bNo} and B_STATUS='N' and B_CATEGORY='문의사항') AS NEXT_NO,
+	         (select b_title from BOARD where B_NO = (select min(b_no) from board where b_no > #{bNo}and b_status='N' and b_category='문의사항')) AS NEXT_TITLE,
+	         (select q_category from board join question using(b_no) where b_no = (select min(b_no) from board where b_no > #{bNo} and b_status='N' and b_category='문의사항')) AS NEXT_CATEGORY,
+	         (select m_nickname from board b join member m on b.m_id = m.m_Id where b_no = (select min(b_no) from board where b_no > #{bNo} and b_status='N' and b_category='문의사항')) AS NEXT_NICKNAME,
+	         (select b_date from board where b_no = (select min(b_no) from board where b_no > #{bNo} and b_status='N' and b_category='문의사항')) AS NEXT_DATE
+	         ]]>
+	         	from board b
+	                join question using(b_no)
+	                join member m
+	                on b.m_id = m.m_id
+	            order by b_no desc) board
+	            where b_no=#{bNo} and b_status='N'
+	</select>
+
+	<update id="updateBoard">
+		update board set b_title='${bTitle}', b_content='${bContent}', b_modifydate=sysdate
+		where b_no=${bNo}
+	</update>
+	
+	<update id="updateAsked">
+		update question set q_category='${qCategory}'
+		where b_no=${bNo}
+	</update>
+	
+	<update id="deleteBoard">
+		update board set b_status='Y'
+		where b_no=${bNo}
+	</update>
+
+<!-- 검색 -->
+	<select id="selectSearchResultCount" resultType="_int">
+		select count(*)
+		from board
+		where b_category='문의사항' and b_status='N'
+		<if test="tAndC != null">
+			 and b_content like '%'|| #{tAndC} ||'%' 
+       		 and b_title like '%'|| #{tAndC} ||'%'
+		</if>
+		<if test="title != null">
+			and b_title like '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			and b_content like '%' || #{content} || '%'
+		</if>
+	</select>
+	
+	<select id="selectSearchAskedList" resultMap="askedListResultSet">
+        select b.b_no, q.q_category, m_nickname, b_title, b_content, b_category, b_ModifyDate, b_date, b_status
+         ,(select count(*) from comments where b_no=b.b_no and c_status='N') AS recnt
+		from board b
+		join member m
+         	 on (b.m_id = m.m_id)
+        join question q
+             on (q.b_no = b.b_no)
+         where b_category='문의사항'and b_status='N'
+		<choose>
+			<when test="tAndC != null">
+				 and b_content like '%'|| #{tAndC} ||'%' 
+       			 and b_title like '%'|| #{tAndC} ||'%'
+			</when>
+			<when test="title != null">
+				and b_title like'%'|| #{title} ||'%'
+			</when>
+			<otherwise>
+				and b_content like '%' || #{content} || '%'
+			</otherwise>
+		</choose>
+	</select>
+
+
+<!-- 댓글 부분 -->
+<!-- 댓글 리스트  -->
+<select id="selectReplyList" resultMap="replyResultSet">
+        select  *
+		from comments
+		where b_no=#{bNo} and c_status='N'
+		order by c_no desc
+	</select>
+
+	<!-- 댓글 카운트 -->
+	<select id="selectReplyCount" resultType="_int">
+	    SELECT COUNT(*)
+	    FROM COMMENTS
+	    WHERE B_NO = #{bNo} and c_status = 'N'
+	</select>
+
+<resultMap type="Reply" id="replyResultSet">
+		<id column="C_NO" property="cNo"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="C_CONTENT" property="cContent"/>
+		<result column="C_DATE" property="cDate"/>
+		<result column="C_MODIFYDATE" property="cModifyDate"/>
+		<result column="C_STATUS" property="cStatus"/>
+		<result column="C_REPORT" property="cReport"/>
+	</resultMap>
+	
+<!-- 댓글 등록 -->
+	<insert id="insertReply">
+		insert into comments 
+		values(SEQ_COMMENTS_NO.nextval, '${bNo}', '${mId}', '${cContent}', sysdate, sysdate, 'N', 0)
+	</insert>
+
+<!-- 댓글 수정 -->
+	<update id="updateReply">
+		update comments set c_content = #{cContent}
+        where c_no=#{cNo}
+	</update>	
+		
+	
+<!-- 댓글삭제 -->
+	<update id="deleteReply">
+		update comments set c_status='Y'
+		where c_no=#{cNo}
+	</update>
+
+</mapper>

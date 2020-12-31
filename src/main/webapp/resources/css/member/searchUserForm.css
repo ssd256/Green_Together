@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+html,
+body {
+	margin: 0px;
+	height: 100vh;
+ 	font-family: '맑은 고딕';
+}
+  /* 탭 부분 */
+.tab_wrap {
+	position: relative;
+	left: 50px;
+	top: 20px;
+  }
+  #tabHr{
+	position: relative;
+    left : 200px;
+    top: -1px;
+    width: 300px;
+    height: 1px;
+    background: #df0000;
+  }
+  
+.tab_menu_container {
+	display: flex;
+}
+  
+  .tab_menu_btn {
+	width: 100px;
+	height: 40px;
+	background: none;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+  }
+  
+.tab_menu_btn.on {
+     	border-top: 2px solid #df0000;
+     	border-left: 2px solid #df0000;
+     	border-right: 2px solid #df0000;
+     	font-weight: 300px;
+	padding: 0px;
+	color: #df0000;
+  }
+  .tab_menu_btn.off {
+	border-bottom: 1px solid #df0000;
+  }
+  
+  .tab_menu_btn:hover {
+	color: #df0000;
+  }
+  
+  .tab_box {
+	display: none;
+	padding: 20px 0px;
+  }
+  
+  .tab_box.on {
+	display: block;
+	padding: 20px 0px;
+  }
+#emailCheck_btn{
+	width: 120px; height: 30px;
+	margin: 0px 0px 5px 10px;
+	border-radius: 7px;
+	background: rgb(153, 203, 56);
+	cursor: pointer;	
+	font-weight: bold;
+}
+.btn_box,.tab_wrap,.tab_box_container{
+	text-align: center;
+	width: 550px;
+}
+.btn{
+	display: inline-block;
+	border: none;
+	border-radius:5px;
+	background: rgb(99, 165, 55);
+	color: white;
+	width: 100px; height: 40px;
+	cursor: pointer;
+	font-size: 20px;
+	margin-left: 20px;
+}
+#cancleBtn{
+	background: rgb(193, 223, 135);
+}
+.contentsTable{
+	width: 550px;
+	height: 120px;
+	margin: 0;
+}
+.contentsTable td{
+	height: 30px;
+}
+.text_box{
+	width: 80px;
+}

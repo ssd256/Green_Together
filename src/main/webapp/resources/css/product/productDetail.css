@@ -1,0 +1,323 @@
+ @charset "UTF-8";
+   
+   #sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: 20px;
+    	margin-top: 30px;
+    }
+    
+    #pdetail_hr{ 
+    	border: solid 4px rgb(157, 214, 94);
+   	}
+   
+    .btn{			/* 수정, 삭제 버튼 */
+    	float: right;
+    	margin: 30px 20px 20px 0px;
+    	width: 75px;
+    	height: 35px;
+    	color: white;
+    	font-weight: bold;
+    	border: none;
+    	border-radius: 5px;
+    }
+    
+    #list_btn{
+    	color: black;
+    }
+    
+    .btn:hover{
+    	cursor: pointer;
+    }
+    
+    #update_btn{	/* 수정 버튼 */
+    	background: rgb(153, 203, 56)
+    }
+    
+    #delete_btn{	/* 삭제 버튼 */
+    	background: rgb(192, 57, 43);
+    }
+    
+    hr{
+    	clear: both;
+    	margin: 0px 0px 50px 0px;
+    }
+    
+    #slideshow-container{		/* 상품 이미지 영역 */
+    	width: 32%;
+    	height: 450px;
+    	margin: 15px 0 30px 0;
+    	float: left;
+    	position: relative;
+    }
+    
+    .mySlides{				/* 상품 이미지 */
+    	width: 350px;
+    	height: 400px;
+    	float: left;
+    	margin: 5px 0 30px 80px;
+    }
+    
+    #slideshow-container > [name=contentImg]{	/* 2, 3번째 사진 */
+    	display: none;
+    }
+    
+    #green_mark{	/* 상품 안의 환경마크 이미지 */
+    	width: 50px;
+    	height: 50px;
+    	position: absolute;
+    	top: -10px;
+    	right: 30px;
+    }
+    
+    .prevs, .nexts{
+    	position: absolute;
+    	left : -10px;
+ 		top: 130px; 
+		width: auto;
+		padding: 16px;
+		color: lightgray;
+		font-weight: bold;
+		font-size: 40px;
+		transition: 0.6s ease;
+		border-radius: 3px;
+  		user-select: none;
+    }
+    
+    .nexts{
+ 		left : 430px;
+		border-radius: 3px;
+    }
+    
+    .prevs:hover, .nexts:hover {
+ 		color: gray;
+ 		cursor: pointer;
+	}
+    
+   * {
+      box-sizing: border-box
+	   }
+    
+    .dots{					
+    	curosr: pointer;
+    	height: 15px;
+    	width: 15px;
+    	maring: 0 2px;
+    	background-color: #bbb;
+    	border-radius: 50%;
+    	display: inline-block;
+    	transition: background-color 0.6s ease;
+    	background-color: #bbb;
+    }
+    
+    .active, .dot:hover{
+    	background-color: #717171;
+    }
+    
+    /* fading 효과 */
+    .fade{
+    	-webkit-animation-name: fade;
+ 		-webkit-animation-duration: 1.5s;
+ 		animation-name: fade;
+ 		animation-duration: 1.5s;
+    }
+    
+    @-webkit-keyframes fade {
+	  from {opacity: .4} 
+	  to {opacity: 1}
+	}
+	
+	@keyframes fade {
+	  from {opacity: .4} 
+	  to {opacity: 1}
+	}
+	
+	@media only screen and (max-width: 250px) {
+	  .prevs, .nexts {font-size: 11px}
+	}
+   
+    #info_area{			/* 제품 설명 영역 */
+    	float: left;
+    	width: 58%;
+    	margin-left: 150px;
+    	margin-top: 50px;
+    }
+    
+    #infoTable th, td{
+    	height: 40px;
+    	padding: 5px;
+    }
+    
+    #infoTable th{			/* 제품명 */
+    	font-size: 25px;
+    	font-weight: bold;
+    	text-align: left;
+    }
+    
+    .star{
+    	color: #df0000;
+    }
+    
+    #green_mark2{		  /* 제품 설명 옆의 환경마크 이미지 */
+    	width: 35px ;
+    	height: 35px;
+    }
+    
+    .text_box{			 /* 가격, 배송비, 총 금액 */
+    	border:none; 
+    	width:60px;
+    }
+    
+    #total{				/* 총 금액 가격 */
+    	font-weight: bold;
+    	color: red;
+    }
+    
+    #infoTable p{		/* 총 금액 */
+    	font-weight: bold;
+    	display: inline-block;
+    }
+    
+    #count{
+    	font-weight: bold;
+    	font-size: 22px;
+    	color: rgb(192, 57, 43);
+    }
+    
+    .p_btn{				/* 바로구매, 장바구니, 찜하기 버튼 */
+    	border: none;
+    	border-radius: 6px;
+    	width: 170px;
+    	height: 55px;
+    	font-size: 18px;
+    	font-weight: bold;
+    	color: white;
+    	margin: 50px 40px 0px 30px;
+    }
+    
+    #order{					/* 바로구매 버튼 */
+    	background: rgb(99, 165, 55);
+    	margin-left: 150px;
+    }
+    
+    #cart{					/* 장바구니 버튼 */
+    	background: rgb(153, 203, 56);
+    }
+    
+    #wish{					 /* 찜하기 버튼 */
+    	background: rgb(193, 223, 135);
+    }
+    
+    .p_btn:hover{
+    	cursor: pointer;
+    }
+    
+    #more_info{				 /* 상품 상세정보 */
+    	margin-left: 20%;
+    	margin-right: 7%;
+    	width: 42%;
+    	font-size: 15px;
+    	line-height: 23px;	/* 줄 간격 */
+    	float: left;
+    }
+    
+    #comment{
+    	border: none;
+    	resize: none;
+    	overflow: hidden;
+    	background-color: white;
+    	line-height: 25px;
+    	font-size: 16px;
+    }
+    
+    #info_img{					/* 상품 상세 이미지 */
+    	width: 250px;
+    	height: 300px;
+    }
+    
+    #caution_area{				/* 배송 및 반품 안내 문구 영역 */
+    	margin: 70px 0px 50px 18%;
+   	    float: left;
+   	    border: 2px solid lightgray;
+   	    border-radius: 10px;
+   	    padding: 20px;
+    }
+    
+    #arrow{						/* 배송화살표 */
+    	width: 30px;
+    	height: 25px;
+    	float: left;
+    }
+    
+    #caution_area p{			/* 배송 및 반품 안내 */
+    	color: rgb(58, 181, 110);
+    	font-weight: bold;
+    }
+    
+    #caution_area > img{
+   	    margin-top: -3px;
+    }
+    
+    #caution_area pre{			/* 배송 및 반품 안내 문구 */
+    	resize: none;
+    	border: none;
+    	font-size: 15px;
+    	line-height: 23px;	/* 줄 간격 */
+    	background: white;
+    }
+    
+    #reivew_p{
+    	font-weight: bolder;
+    	font-size: 20px;
+    }
+    
+    #Rhr{
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 145px; 
+    	margin-top: -10px;
+    }
+    
+    .review_table{				 /* 상품후기 전체 영역 */
+    	margin: 0px 0px 3% 5%;
+    	font-size: 15px;
+    }
+    
+    .review_table th{			/*상품후기 이미지 영역*/
+		width: 80px;
+    }
+    
+    .review_table td{			 /* 상품 후기 영역 */
+    	padding: 20px 100px 20px 0px;
+    }
+    
+    .review_table td:nth-child(2){
+    	padding-left: 50px;
+    	width: 500px;
+    }
+    
+    .review_table div{
+    	display: inline-block;
+    }
+    
+    .review_table img{			/* 상품후기 이미지 */
+    	width: 80px;
+    	height: 100px;
+    }
+    
+    .review_table p{
+    	color: #df0000;
+    }
+    
+    .reviewDel, .reviewFileDel{
+    	border: none;
+    	border-radius: 6px;
+    	width: 70px;
+    	height: 25px;
+    	font-weight: bold;
+    	color: white;
+    	background: rgba(192, 57, 43, 0.9);
+    	cursor: pointer;
+    }
+    
+    
+    

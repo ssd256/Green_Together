@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+    /*  화면에 녹색 줄 */
+	.greenDiv{
+		height : 4px;
+		width: 100%;
+		background : rgb(99, 165, 55);
+		border-radius: 10px;
+		margin-top: -10px;
+	}
+	
+	/* 폼안에 제일 큰 div */
+	#formDiv{
+		margin: 0px 5%;
+	}
+		/* 봉사활동명 */
+	#bTitleStrong{
+		font-size: 30px;
+	}
+	.whiteDiv{
+		height: 3px;
+		width: 100%;
+		background: white;
+	}
+		/*  화면에 연두색 줄 */
+	.yellowGreenDiv{
+		height : 4px;
+		width : 100%;
+		background : rgb(193, 223, 135);
+		border-radius: 10px;
+	}
+		.vInfomation{
+		display: flex;
+		border: 1px solid rgb(224, 224, 224);
+	}
+	
+	.vInfoTitle{
+		flex: 4;
+		text-align: center;
+		background: rgb(224, 224, 224);
+		font-size: 16px;
+		height: 45px;
+		line-height: 40px;
+	}
+	
+	.vInfoContent{
+		flex: 6;
+		text-align: center;
+		line-height: 40px;
+	}
+	
+		/* 봉사활동 장소 */
+	#vInfoTitle2{
+		flex: 2;
+		text-align: center;
+		background: rgb(224, 224, 224);
+		font-size: 16px;
+		height: 80px;
+		line-height: 80px;
+	}
+	#vInfoContent2{
+		flex: 8;
+	}
+	    #preNext{
+		display: flex;
+		height : 120px;
+		width: 100%;
+	}
+	.preNextDiv{
+		height: 100px;
+	}
+	#pnd_1{
+		flex:4.5;
+		float:right;
+		width: 300px;
+	}
+	#pnd_1_1{
+		float:right;
+		width: 300px;
+	  	text-align: right;
+	  	height: 100%;
+	}
+	#pnd_1_1 p{
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		  width: 300px;
+	}
+	#pnd_2{
+		flex:1;
+		text-align: center;
+	}
+	#listBack{
+		margin-top: 20px;
+		width: 100px;
+		height: 50px;
+	}
+	#pnd_3{
+		flex:4.5;
+		text-align: left;
+	}
+	#pnd_3_1{
+		float:left;
+		width: 300px;
+	  	text-align: left;
+	  	height: 100%;
+	}
+	#pnd_3_1 p{
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		  width: 300px;
+	}
+	    .addBtn{
+    	color : white;
+    	background : rgb(193, 223, 135);
+    	border: none;
+    	width : 70px;
+    	height: 40px;
+    	font-size: 16px;
+    	font-weight: bold;
+		border-radius: 10px;
+    }
+    
+    #bigbigDiv{
+    	margin: 0px 15%;
+    }
+    
+    /* 리스트 큰 div */
+	.dataList{
+		margin: 0px 10%;
+		height: 50px;
+		cursor: pointer;
+	}
+	.vrTitleSpan{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.vrTitleDiv{
+		margin-top: 10px;
+	}
+	.vrInformSpan{
+		font-size: 14px;
+		font-weight: normal;
+	}
+	    
+    #emptySpan{
+    	font-size: 18px;
+    }

@@ -1,0 +1,141 @@
+@charset "UTF-8";
+    #category_tab{						/* 카테고리 선택 영역 */
+    	margin: 80px 0px 20px 10px;
+    	padding-right: 100px;
+    }
+    
+    .category{							/* 카테고리 탭 */
+    	padding: 10px;
+    	margin: 0px -3px 0px 0px;
+    	width: 100px;
+    	border: none;
+		border-radius: 5px;
+		color: white;
+		font-weight: bold;
+    }
+    	
+    .btn{								/* 등록, 수정, 삭제 버튼 공통 css */
+    	padding: 5px;
+    	width: 50px;
+    	float: right;
+    	margin: 10px 20px 0px 0px;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border: none;
+		border-radius: 5px;
+    }
+    
+    .category, #update_btn{				/* 카테고리 탭, 수정 버튼 */
+    	background : rgb(153, 203, 56);
+    }
+    
+    #insert_btn{						/* 등록 버튼 */
+    	background : rgb(99, 165, 55);
+    }
+    
+    #delete_btn{						/* 삭제 버튼 */
+    	background : rgb(192, 57, 43);
+    }
+    
+    
+    .category, .btn:hover{
+    	cursor: pointer;
+   	}
+   	
+    
+    qna table {							/* 질문, 답변 글씨 */
+    	font-size:18px;
+    }
+    
+    .asked{								/* 질문, 답변 테이블 */
+    	border-top: 1px solid black;
+    	padding-top: 10px;
+    }
+    
+    hr{
+    	display: block; 
+    	border: black 0 none;
+    	border-top: black 1px solid;
+    	height: 1px;
+    }
+    
+    .asked td{											/* 질문 칸 */
+    	height: 70px;
+    } 
+    
+    .ask_btn{											/* 질문칸의 v */	
+    	border: none;
+    	background: white;
+    	margin-right: 50px;
+    	font-size: 20px;
+    	transform : rotate(0deg)
+    }
+    
+    .ask > .a_td:nth-child(1){							/* 라디오 버튼 */
+    	padding-left: 30px;
+    }
+    
+    .ask input[name=ask_btn]:hover{						/* 질문칸의 v */
+		cursor: pointer;
+	}
+    
+   .ask > .a_td:nth-child(2), .answer > .a_td:nth-child(2),
+   .ask > .b_td:nth-child(1), .answer > .b_td:nth-child(1)
+   {															/* 목록보기 Q, A칸 */
+     	padding: 0px 0px 0px 50px;
+		width: 50px;
+		color: rgb(41, 128, 185);
+		font-weight: bold;
+    }
+    
+    .ask > .a_td:nth-child(3), .answer > .a_td:nth-child(3),
+   	.ask > .b_td:nth-child(2), .answer > .b_td:nth-child(2)
+   {															/* 목록보기 질문 칸 */
+    	width: 1200px;
+    }
+    
+    .answer {											/* 답변 칸 */			
+    	height: 150px;
+    }
+    
+    .answer, .answer_hr {								/* 답변, hr 선 */
+    	display:none;
+    }
+    
+    .asked td:nth-child(4), td:last-child{				/* hr 선 */
+    	height: 1px;
+    }
+	
+    .pagination{				/* 페이징 버튼 영역 */
+    	margin: 50px 0 0 38%;
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    	display: block;
+    }
+    
+    .page, .prev_btn, .next_btn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top;
+    	margin-right: -1px;
+    }
+    
+    .prev_btn{
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .next_btn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+	

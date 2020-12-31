@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.kh.green.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.green.product.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.kh.green.product.model.vo.Cart" alias="Cart"/>
+		<typeAlias type="com.kh.green.product.model.vo.Wish" alias="Wish"/>
+		<typeAlias type="com.kh.green.product.model.vo.Order" alias="Order"/>
+		<typeAlias type="com.kh.green.product.model.vo.OrderDetail" alias="OrderDetail"/>
+		<typeAlias type="com.kh.green.product.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.kh.green.volunteer.model.vo.Volunteer" alias="Volunteer"/>
+		<typeAlias type="com.kh.green.volunteer.model.vo.VolunteerReview" alias="VolunteerReview"/>
+		<typeAlias type="com.kh.green.volunteer.model.vo.Participation" alias="Participation"/>
+		<typeAlias type="com.kh.green.question.model.vo.Question" alias="Question"/>
+		<typeAlias type="com.kh.green.question.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.kh.green.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.green.board.model.vo.Files" alias="Files"/>
+		<typeAlias type="com.kh.green.alarm.model.vo.Alarm" alias="Alarm"/>
+	</typeAliases>	
+	
+	<mappers>
+		<mapper resource="mapper/member-mapper.xml"/>
+		<mapper resource="mapper/product-mapper.xml"/>
+		<mapper resource="mapper/volunteer-mapper.xml"/>
+		<mapper resource="mapper/question-mapper.xml"/>
+		<mapper resource="mapper/asked-mapper.xml"/>
+		<mapper resource="mapper/shares-mapper.xml"/>
+		<mapper resource="mapper/board-mapper.xml"/>
+		<mapper resource="mapper/alarm-mapper.xml"/>
+	</mappers>
+</configuration>

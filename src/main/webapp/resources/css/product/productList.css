@@ -1,0 +1,152 @@
+@charset "UTF-8";
+	#search_box{
+		padding-top: 20px;
+     	text-align: center;
+     	height: 50px;
+     }
+     
+     #search_box select{			/* 상품 카테고리 선택 */
+     	width: 130px;	
+     	height: 30px;
+     	margin: 0px 20px 0px 0px;
+     	padding: 0px 0px 0px 5px;
+     }
+     
+     #search_text{					/* 상품 검색 칸 */
+    	width: 500px;
+    	height: 30px; 
+    	margin: 0px 10px 0px 0px;
+    	padding: 0px 0px 0px 10px;
+     }
+     		
+     #search_btn{					/* 검색 버튼 */
+     	background : rgb(99, 165, 55);
+     }
+     
+     #insert_btn{
+     	clear: all;					/* 등록 버튼 */
+     	float: right;
+     	background : rgb(153, 203, 56);
+     }
+     
+     .btn{
+     	padding: 5px;
+     	width: 75px;
+     	height: 35px;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border: none;
+		border-radius: 5px;
+     }
+     
+     .btn:hover{
+     	cursor: pointer;
+     }
+     
+     #line{			/* hr 선 */
+		margin-top: 20px;
+ 	   	border: 3px solid rgb(99, 165, 55);
+
+     }
+     
+     #select_tap{			/* 최신순, 판매순, 낮은가격순, 높은가격순 */
+        padding: 0px 0px 0px 10px;
+     }
+     
+     #select_tap ul{
+    	display: inline-flex;
+        list-style: none;
+        margin-right: 1000px;
+     }
+     
+     .select_btn{
+        text-decoration: none;
+        color: black;
+     }
+     
+     #count{	/* 15개씩 보기, 30개씩 보기 */
+     	width: 130px;	
+     	height: 30px;
+     	padding: 0px 0px 0px 5px;
+     }
+    
+    .product_area{			/* 전체 상품 영역 */
+    	margin-left: 100px;
+    	display: inline-block;
+    }
+    
+    .img{
+    	text-align: center;
+    	margin: 10px;
+    }
+    
+    .img:hover{
+    	cursor: pointer;
+    }
+    
+    .img > img{	/* 상품 이미지 */			/* 각 상품 이미지, 설명 */
+    	width: 180px;
+    	height: 220px;
+    }
+    
+    .wrap{							/* 개별 상품품 영역 */
+    	margin: 50px;
+    	display: inline-block;
+    	float: left;
+    	display: inline-block;
+    	width: 330px;
+    	height: 400px;
+     	text-align: center;
+    	border: 2px solid lightgray;
+    	border-radius: 5px;
+    }
+    
+    .context{				
+    	width: 220px;
+    	margin: auto;
+    	border-top: 1px solid #55937D;
+    }
+    
+     
+	.star_grade a{				/* 별점 */
+		text-decoration: none;
+		color: lightgray;
+	}
+	
+	.star_grade a.on{			/* 별점 선택 시 색 변함 */
+		color: greenyellow;
+	}
+    
+    .pagination{				/* 페이징 버튼 영역 */
+    	margin: 50px 0 0 38%;
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    }
+    
+    .page, .prev_btn, .next_btn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top;
+    	margin-right: -1px;
+    }
+    
+    .prev_btn{
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .next_btn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+    
+    

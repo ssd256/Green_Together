@@ -1,0 +1,75 @@
+@charset "UTF-8";
+	#title_hr{
+		margin: auto;
+		align: center;
+		border: solid 4px rgb(157, 214, 94);
+	    width: 210px;
+	    margin-top: -15px;
+	    margin-left: -114px;
+	}
+	
+	.vInfomation{
+		display: flex;
+		border: 1px solid rgb(224, 224, 224);
+	}
+	
+	.vInfoTitle{
+		flex: 4;
+		text-align: center;
+		background: rgb(224, 224, 224);
+		font-size: 16px;
+		height: 45px;
+		line-height: 40px;
+	}
+	
+	.vInfoContent{
+		flex: 6;
+		text-align: center;
+		line-height: 40px;
+	}
+	#vInfoTitle2{
+		flex: 2;
+		text-align: center;
+		background: rgb(224, 224, 224);
+		font-size: 16px;
+		height: 80px;
+		line-height: 80px;
+	}
+	#vInfoContent2{
+		flex: 8;
+	}
+	#vInfoDiv{
+		width: 100%;
+		height: 410px;
+		display: flex;
+	}
+    
+    /* 활동내용 입력란 */
+    #vContent{
+		flex:6;
+    }
+	#vContentTextarea{
+    	width: 90%;
+    	height: 90%;
+    	resize: none;
+    	padding: 10px 10px 10px 10px;
+    }
+     #mapApi{
+    	flex:4;
+    	width: 100%;
+    	height: 95%;
+    }
+    
+    #okayBtn{
+   		color : white;
+    	background : rgb(193, 223, 135);
+    	border: none;
+    	width : 70px;
+    	height: 40px;
+    	font-size: 16px;
+    	font-weight: bold;
+		border-radius: 10px;
+    }
+    #btnDiv{
+		text-align: center;
+	}

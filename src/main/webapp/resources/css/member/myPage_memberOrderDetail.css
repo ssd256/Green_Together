@@ -1,0 +1,101 @@
+@charset "UTF-8";
+	#orderInfo{
+	    text-align: center;
+	}
+	
+	.order_table{
+	   width: 1000px; height: 200px; 
+	   border-top: 1px solid rgb(127, 127, 127);
+	   border-collapse: collapse;/* 선 여백 없애기 */ 
+	   border: solid 1px;
+	   margin: auto;
+	   text-align: center;
+	   }
+		
+	.order_table th{
+	 	height: 50px; 
+	   	background: rgba(153, 203, 56, 0.5); 
+	   	border-bottom: 1px solid rgb(127, 127, 127);	
+	    }
+	   	
+	.order_table td{
+	   height: 100px;
+	   text-align: center;
+	   border-bottom: 1px solid rgb(127, 127, 127);
+	   }
+	  
+	.order_table td:nth-child(2){		/* 주문날짜 */ 
+   		width: 120px;
+   }  
+	   
+   .order_table td:nth-child(3){		/* 주문번호 */
+   		width: 150px;
+   }
+   
+   .order_table td:nth-child(4){		/* 상품명 */
+   		width: 350px;
+   }
+	 
+	input[type=button]{
+			cursor: pointer;
+			color: white;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+			padding: 5px;
+			margin-top: 8px;
+		}
+	   
+	.detailBtn{
+		background: rgb(99, 165, 55);
+	}
+	
+	.cancelBtn{
+		background: rgb(192, 57, 43);
+	}
+	
+	input[name=reviewBtn]{
+		background: rgb(193, 223, 135);
+	}
+	
+	input[name=successBtn]{
+		background: rgb(184, 231, 252);
+	}
+	
+    .pagination{				/* 페이징 버튼 영역 */
+    	margin: 10% 0 0 40%;
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    }
+    
+    .page, .prev_btn, .next_btn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top;
+    	margin-right: -1px;
+    }
+    
+    .prev_btn{
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .next_btn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+    
+    
+	
+	
+	
+	
+	

@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+	section{
+		margin: 0;
+	}
+
+	#sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: 100px;
+    	margin-top: 20px;
+    }
+    
+    
+    #producthr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 350px;
+    	margin-left: 90px;
+    	margin-top: -15px;
+   	}
+   	
+   
+   	.productDiv{	/* 요소 전체다이브 */	
+   		width: 1000px;
+   		margin: auto;
+   		margin-top: 80px;
+   		margin-left: 90px;
+   	}
+   	
+   	.productDiv img{
+   		width: 80px; height: 120px;
+   	}
+
+	.product_table{
+	   width: 1000px;
+	   	border-collapse: collapse;/* 선 여백 없애기 */ 
+   }
+	
+	.product_table th{
+		height: 50px;
+	   	background: rgba(153, 203, 56, 0.5);
+	   	text-align: center;
+   }
+   	
+   .product_table td{
+	   	height: 200px;
+	   	border-bottom: 1px solid rgb(127, 127, 127);
+	   	font-weight: bold;
+	   	text-align: center;
+   }
+   
+    .product_table th:nth-child(1){		/* 체크박스 */
+   		width: 50px;
+   }
+   
+   .product_table td:nth-child(1){		/* 체크박스 */
+   		width: 50px;
+   }
+   
+   .product_table th:nth-child(2){		/* 주문번호 */
+   		width: 90px;
+   }
+   
+   .product_table td:nth-child(2){		/* 주문번호 */
+   		width: 90px;
+   }
+   
+     .product_table th:nth-child(3){		/* 제품정보 */
+   		width: 280px;
+   }
+   
+   .product_table td:nth-child(3), .product_table td:nth-child(4){		/* 제품정보 */
+   		width: 140px;
+   } 
+   
+   .product_table th:nth-child(6), .product_table th:nth-child(7){		/* 주문상태, 배송상태 */		
+   		width: 100px;
+   }
+   
+   .product_table td:nth-child(6), .product_table td:nth-child(7){		/* 주문상태, 배송상태 */
+  		width: 100px;
+   }
+   
+    .img_area{
+   		height: 150px;
+   	}
+   	
+   	input[name=orderState], input[name=orderDelivery]{
+   		width: 90px;
+   		height: 23px;
+   		border-radius: 3px;
+   		border: 1px solid lightgray;
+   		text-align: center;
+   		margin-right: 3%;
+   	}
+   	
+   	.product_table select{
+   		padding: 3px;
+   		border-radius: 5px;
+   		text-align: center;
+   	}
+   	
+   input[name=orderBtn], input[name=deliveryBtn], input[name=cancelBtn]{
+	   width: 75px; height: 33px;
+	   margin-top: 20px;
+	   border-radius: 5px;
+	   cursor: pointer;
+	   border: none;
+	   font-weight: bold;
+   } 
+   
+   input[name=orderBtn]{
+   		background-color: rgba(68, 193, 163, 0.6);
+   }
+   
+   
+   input[name=deliveryBtn]{
+   		background-color: rgba(184, 231, 252, 0.7);
+   }
+   
+   input[name=cancelBtn]{
+   		color: white;
+   		font-weight: bold;
+   		background: rgb(192, 57, 43, 0.92);
+   }
+   
+   .pagination{				/* 페이징 버튼 영역 */
+    	margin: 10% 0 0 40%;
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    }
+   
+   .page, .prev_btn, .next_btn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top;
+    	margin-right: -1px;
+    }
+    
+    .prev_btn{
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .next_btn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+   
+   

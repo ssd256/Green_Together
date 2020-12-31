@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="productMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*) 
+		from product
+		    join board using(b_no)
+		where b_status = 'N'
+	</select>
+
+	<select id="selectPList" resultMap="productListResultSet">
+		select *
+		from product
+		    join board using(b_no)
+		where b_status = 'N'
+		order by b_date desc	
+	</select>	
+
+	<select id="selectFList" resultMap="filesListResultSet">
+		select * 
+		from files
+			join board using(b_no)
+		where b_status = 'N' and f_level = 0 and b_category = '쇼핑몰'
+		order by b_date desc
+	</select>
+	
+	<select id="getListSearchCount" resultType="_int">
+		select count(*) 
+		from product
+		    join board using(b_no)
+		where b_status = 'N' and p_category = #{pCategory} and p_name like '%'||'${pName}'||'%'
+	</select>
+	
+	<select id="selectSearchPList" resultMap="productListResultSet">
+		select * 
+		from product
+		    join board using(b_no)
+		where b_status = 'N' and p_category = #{pCategory} and p_name like '%'||#{pName}||'%'
+		order by b_date desc
+	</select>
+	
+	<select id="selectSearchFList" resultMap="filesListResultSet">
+		select * 
+		from files
+		    join board using(b_no)
+		    join product using(b_no)
+		where b_status = 'N' and f_level = 0 and p_category = #{pCategory} and p_name like '%'||#{pName}||'%'
+		order by b_date desc
+	</select>
+	
+	<select id="getListOptionCount" resultType="_int">
+		select count(*)
+		from plist
+		where b_status = 'N' and f_level = 0
+		<if test="option == '최신순'">
+			order by b_date desc
+		</if>
+		<if test="option == '낮은가격순'">
+			order by p_price
+		</if>
+		<if test="option == '높은가격순'">
+			order by p_price desc
+		</if>
+	</select>
+	
+	<select id="selectOptionPList" resultMap="productListResultSet">
+		select * 
+		from product
+		    join board using(b_no)
+		where b_status = 'N'
+		<if test="option == '최신순'">
+			order by b_date desc
+		</if>
+		<if test="option == '낮은가격순'">
+			order by p_price
+		</if>
+		<if test="option == '높은가격순'">
+			order by p_price desc
+		</if>
+	</select>
+	
+	<select id="selectOptionFList" resultMap="filesListResultSet">
+		select * 
+		from files
+		    join board using(b_no)
+		    join product using(b_no)
+		where b_status = 'N' and f_level = 0
+		<if test="option == '최신순'">
+			order by b_date desc
+		</if>
+		<if test="option == '낮은가격순'">
+			order by p_price
+		</if>
+		<if test="option == '높은가격순'">
+			order by p_price desc
+		</if>
+	</select>
+	
+	<select id="selectProduct" resultMap="productListResultSet">
+		select distinct p_no, b_no, p_category, p_name, p_price, p_count, p_comment
+		from plist
+		where b_no = #{ bNo }
+	</select>
+	
+	<select id="selectPCount" resultMap="productListResultSet">
+		select p_no, p_count 
+		from product
+	</select>
+	
+	<select id="selectFiles" resultMap="filesListResultSet">
+		select b_no, f_num, f_originname, f_changename, f_level
+		from plist
+		where b_no = #{ bNo }
+		order by f_level
+	</select>
+	
+	<resultMap type="Product" id="productListResultSet">
+		<id column="P_NO" property="pNo"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="P_CATEGORY" property="pCategory"/>
+		<result column="P_NAME" property="pName"/>
+		<result column="P_PRICE" property="pPrice"/>
+		<result column="P_COUNT" property="pCount"/>
+		<result column="P_COMMENT" property="pComment"/>
+		<result column="B_DATE" property="bDate"/>
+		<result column="B_MODIFYDATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+	</resultMap>
+	
+	<resultMap type="Files" id="filesListResultSet">
+		<id column="F_NUM" property="fNum"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="F_PATH" property="fPath"/>
+		<result column="F_ORIGINNAME" property="fOriginName"/>
+		<result column="F_CHANGENAME" property="fChangeName"/>
+		<result column="F_LEVEL" property="fLevel"/>
+		<result column="F_STATUS" property="fStatus"/>
+	</resultMap>
+	
+	<insert id="insertProdcut">
+		insert all into board values (SEQ_BOARD_NO.nextval, #{mId}, #{pName}, #{pComment}, '쇼핑몰', DEFAULT , DEFAULT , DEFAULT)
+           into product values (SEQ_PRODUCT_NO.nextval, SEQ_BOARD_NO.nextval, #{pCategory}, #{pName}, #{pPrice}, #{pCount}, #{pComment})
+		select * from dual
+	</insert>
+	
+	<insert id="insertFiles">
+		insert into files 
+		values(SEQ_FILES_NO.nextval, SEQ_BOARD_NO.currval, #{fPath}, #{fOriginName}, #{fChangeName}, #{fLevel}, DEFAULT)
+	</insert>
+	
+	<update id="updateBoard">
+		update board
+		set b_title = #{pName}, b_content = #{pComment}, b_modifydate = sysdate
+		where b_no = #{bNo}
+	</update>
+	
+	<update id="updateProduct">
+		update product
+		set p_name = #{pName}, p_price = #{pPrice}, p_count = #{pCount}, p_comment = #{pComment}
+		where b_no = #{bNo}
+	</update>
+	
+	<update id="updateFiles">
+		update files 
+		set f_originname = #{fOriginName}, f_changename = #{fChangeName}
+		where f_num = #{fNum}
+	</update>
+		
+	<update id="deleteProduct">
+		update board set b_status = 'Y'
+		where b_no = ${bNo} and b_category = '쇼핑몰'
+	</update>
+	
+	<update id="deleteFiles">
+		update files set f_status = 'Y'
+		where b_no = ${bNo}
+	</update>
+	
+	<select id="getCountCartTotal" resultType="_int">
+		select count(distinct p_no)
+		from cart c
+		    join board b on(c.b_no = b.b_no)
+		where c.m_id = #{mId} and b_status = 'N' and c_status = 'N'
+	</select>
+	
+	<select id="getCountCart" resultType="_int">
+		select count(distinct c.p_no)
+		from cart c
+		    join board b on(c.b_no = b.b_no)
+		where c.m_id = #{mId} and b_status = 'N' and c_status = 'N' and p_no = #{pNo}
+	</select>
+	
+	<select id="selectOrders" resultMap="orderListResultSet">
+		select o_id, o_no, p_no, p_name, o_count, o_recipient, o_phone, o_address, 
+			   o_pay, o_addmessage, o_pay_date, o_status, o_delivery
+		from olist
+		where o_status in('결제완료', '구매확정') and m_id = #{orderId}
+	</select>
+	
+	<resultMap type="Order" id="orderListResultSet">
+		<id column="O_ID" property="oId" />
+		<result column="O_NO" property="oNo" />
+		<result column="M_ID" property="orderId" />
+		<result column="B_NO" property="bNo" />
+		<result column="P_NO" property="pNo" />
+		<result column="O_P_NO" property="o_pNo" />
+		<result column="C_NO" property="cNo" />
+		<result column="F_CHANGENAME" property="fName"/>
+		<result column="P_NAME" property="pName" />
+		<result column="O_COUNT" property="orderCount" />
+		<result column="O_RECIPIENT" property="recipient" />
+		<result column="O_PHONE" property="reciPhone" />
+		<result column="O_ADDRESS" property="orderAddr" />
+		<result column="O_PAY" property="orderPay" />
+		<result column="O_WAY" property="orderWay" />
+		<result column="O_ADDMESSAGE" property="orderMsg" />
+		<result column="O_PAY_DATE" property="orderDate" />
+		<result column="O_STATUS" property="orderState" />
+		<result column="O_DELIVERY" property="orderDelivery" />
+		<result column="P_COUNT" property="pCount" />
+		<result column="IMP_UID" property="imp_uid" />
+	</resultMap>
+	
+	<insert id="insertCart">
+		insert into cart 
+	    values(SEQ_CART_NO.nextval, #{pNo}, #{bNo}, #{mId}, #{cCount}, #{cPrice}, #{fName}, #{pName}, default)
+	</insert>
+	
+	<update id="updateCart">
+		update cart set cart_count = #{cCount}, cart_price = #{cPrice}
+		where p_no = #{pNo} and m_id = #{mId} and c_status = 'N'
+	</update>
+	
+	<select id="selectCart" resultMap="cartListResultSet">
+		select *
+		from cart
+		where c_status = 'N' and m_id = #{mId} and b_no in(select b_no
+                                                           from board
+                                                           where b_category = '쇼핑몰' and b_status = 'N')
+	</select>
+	
+	<resultMap type="Cart" id="cartListResultSet">
+		<id column="CART_NO" property="cNo"/>
+		<result column="P_NO" property="pNo"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="CART_COUNT" property="cCount"/>
+		<result column="CART_PRICE" property="cPrice"/>
+		<result column="F_NAME" property="fName"/>
+		<result column="P_NAME" property="pName"/>
+		<result column="C_STATUS" property="cStatus"/>
+	</resultMap>
+	
+	<update id="deleteCart">
+		update cart set c_status = 'Y'
+		where cart_no = #{cNo} and m_id = #{mId}
+	</update>
+	
+	<select id="getCountWishTotal" resultType="_int">
+		select count(distinct w.b_no)
+		from wish w
+		    join board b on(w.b_no = b.b_no)
+		where w.m_id = #{mId} and b_status = 'N' and w_status = 'N'
+	</select>
+	
+	<select id="getCountWish" resultType="_int">
+		select count(distinct w.p_no)
+		from wish w
+		    join board b on(w.b_no = b.b_no)
+		where w.m_id = #{mId} and b_status = 'N' and w_status = 'N' and p_no = #{pNo}
+	</select>
+	
+	<insert id="insertWish">
+		insert into wish
+	    values(SEQ_WISH_NO.nextval, #{pNo}, #{bNo}, #{mId}, #{cCount}, #{cPrice}, #{fName}, #{pName}, default)
+	</insert>
+	
+	<update id="updateWish">
+		update wish set cart_count = #{cCount}, cart_price = #{cPrice}
+		where p_no = #{pNo} and m_id = #{mId} and w_status = 'N'
+	</update>
+	
+	<select id="selectWish" resultMap="wishListResultSet">
+		select *
+		from wish
+		where w_status = 'N' and m_id = #{mId} and b_no in(select b_no
+                                                           from board
+                                                           where b_category = '쇼핑몰' and b_status = 'N')
+	</select>
+	
+	<resultMap type="Wish" id="wishListResultSet">
+		<id column="W_NO" property="wNo"/>
+		<result column="P_NO" property="pNo"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="CART_COUNT" property="cCount"/>
+		<result column="CART_PRICE" property="cPrice"/>
+		<result column="F_NAME" property="fName"/>
+		<result column="P_NAME" property="pName"/>
+		<result column="W_STATUS" property="wStatus"/>
+	</resultMap>
+	
+	<update id="deleteWish">
+		update wish set w_status = 'Y'
+		where p_no = #{pNo} and m_id = #{mId}
+	</update>
+	
+	<select id="selectOrder" resultMap="orderListResultSet">
+		select o_id, o_no, p_name, p_no, o_recipient, o_phone, o_address, o_pay, o_count, o_status, o_delivery
+		from olist
+		where o_status in ('결제완료', '구매확정') and m_id = #{orderId} and o_id = #{oId} 
+	</select>
+	
+	<select id="getCountReview" resultType="_int">
+		select count(o_id)
+		from review
+		where o_id = #{oId}
+	</select>
+	
+	<insert id="insertReview">
+		insert all into board values(SEQ_BOARD_NO.nextval, #{mId}, '후기', #{rContent}, '후기', default, default, default)
+           		   into review values (SEQ_REVIEW_NO.nextval, SEQ_BOARD_NO.nextval, #{pNo}, #{oId}, #{oNo}, #{rContent}, #{rStar}, sysdate, default, #{mId})
+		select * from dual
+	</insert>
+	
+	<select id="selectReview" resultMap="reveiwListResultSet">
+		select r_no, b_no, o_id, m_id, m_nickname, r_star, r_content, r_date, r_status
+		from rlist
+		where p_no = #{pNo} and r_status = 'N'
+	</select>
+	
+	<select id="selectFReview" resultMap="filesListResultSet">
+		select b_no, f_changename
+		from frlist
+		where p_no = #{pNo} and f_status = 'N'
+	</select>
+	
+	<select id="selectReviewStar" resultType="_float">
+		select avg(nvl(r_star, 0))
+		from(select distinct r_no, b_no, o_id, m_id, m_nickname, p_name, r_star, r_content, r_date, r_status
+		     from rlist
+		     where p_name = #{pName} and r_status = 'N')
+	</select>
+	
+	<resultMap type="Review" id="reveiwListResultSet">
+		<id column="R_NO" property="rNo" />
+		<result column="B_NO" property="bNo" />
+		<result column="P_NO" property="pNo" />
+		<result column="F_CHANGENAME" property="fName" />
+		<result column="O_ID" property="oId" />
+		<result column="O_NO" property="oNo" />
+		<result column="R_CONTENT" property="rContent"/>
+		<result column="R_STAR" property="rStar" />
+		<result column="R_DATE" property="rDate" />
+		<result column="R_STATUS" property="rStatus" />
+		<result column="M_ID" property="mId" />
+		<result column="M_NICKNAME" property="nickName" />
+	</resultMap>
+		
+	<update id="deleteRBoard">
+		update board set b_status = 'Y' where b_no = #{bNo}
+	</update>
+	
+	<update id="deleteReview">
+		update review set r_status = 'Y' where r_no = #{rNo}
+	</update>
+		
+	<update id="deleteRFiles">
+		update files set f_status = 'Y' where b_no = #{bNo}
+	</update>
+	
+	<select id="selectOrderAd"	resultMap="orderListResultSet">
+		select * from olist
+	</select>
+	
+	<update id="updateOrderStatus">
+		update orders set o_status = #{orderState}
+		where o_no = #{oNo}
+	</update>
+	
+	<update id="updateDeliveryStatus">
+		update orders set o_delivery = #{orderDelivery}
+		where o_no = #{oNo}
+	</update>
+	
+	<!-- 주문 쿼리  -->
+	<insert id="insertOrder">
+	  insert all into board values (SEQ_BOARD_NO.nextval, #{orderId}, '주문목록', #{oNo}, '주문', DEFAULT , DEFAULT , DEFAULT)
+      			 into orders values(seq_o_id.nextval, #{oNo}, #{orderId}, SEQ_BOARD_NO.nextval, #{pNo}, #{orderCount}, #{recipient}, #{reciPhone}, #{orderAddr}, 
+            #{orderPay}, #{orderWay}, #{orderMsg}, sysdate, '결제완료', '상품준비중', #{imp_uid})
+      select * from dual
+   </insert>
+   
+   <select id="selectProducts" resultMap="cartListResultSet">
+   		select cart_no, p_no, b_no, m_id, cart_count, cart_price, p_name, c_status
+		from cart
+		where m_id = #{mId} and c_status = 'N' and cart_no = #{cNo}
+   </select>
+	
+	<update id="deleteOrder">
+		update orders set o_status = '결제취소' 
+		where o_no = #{oNo}
+	</update>
+	
+	<select id="oNo2bNo"  resultType="_int">
+		select B_NO
+		from olist
+		where o_no = #{oNo}
+	</select>
+	
+	<select id="oId2bNo"  resultType="_int">
+		select B_NO
+		from olist
+		where o_Id = #{oId}
+	</select>
+	
+	<select id="oNo2userID"  resultType="string">
+		select M_ID
+		from olist
+		where o_no = #{oNo}
+	</select>	
+	<select id="oId2userID"  resultType="string">
+		select M_ID
+		from olist
+		where o_Id = #{oId}
+	</select>	
+	
+	<update id="updateOrderSuccess">
+		update orders set o_status = '구매확정'
+		where o_no = #{oNo}
+	</update>
+	
+	<select id="selectProductCount" resultType="_int">
+		select p_count
+		from product
+		where p_no = #{pNo}
+	</select>
+	
+	<update id="updateProductCount">
+		update product set p_count = #{pCount} - #{orderCount}
+		where p_no = #{pNo}
+	</update>
+	
+	<update id="updateProductCountBack">
+		update product set p_count = #{pCount} + #{orderCount}
+		where p_no = #{pNo}
+	</update>
+	
+	<select id="selectCartOrder" resultMap="cartListResultSet">
+		select *
+		from cart
+		where m_id = #{mId} and c_status = 'N' and cart_no = #{cNo}
+	</select>
+	
+<!-- 인기상품 출력 -->
+	<select id="selectProductTopList" resultMap="productListResultSet">
+	    select b.b_no, f.f_num, p.p_name, p_price,
+        (select count(*) from orders where p_no=p.p_no and o_status='결제완료')as paid
+        from board b
+        join product p on(b.b_no= p.b_no) 
+        join files f on(f.b_no=b.b_no)
+		<![CDATA[	 
+        where b_status='N' and f_level='0' and rownum <= 5 
+         ]]>
+        order by paid desc
+	</select>
+
+	<select id="selectFileTopList" resultMap="filesListResultSet">
+	   	select f.f_num, f.b_no, f.f_path, f.f_originname, f.f_changename, f.f_level, f.f_status,
+        (select count(*) from orders where p_no=p.p_no and o_status='결제완료')as paid
+        from files f
+        join product p on(p.b_no= f.b_no) 
+        join board b on(b.b_no=f.b_no) 
+       <![CDATA[
+        where b_status='N' and f_level='0' and rownum <= 5 
+        ]]>
+        order by paid desc
+	</select>
+	
+	<select id="selectOrderAD" resultMap="orderListResultSet">
+		select o_id, o_no, m_id, p_name, p_no, f_changename, o_recipient, o_phone, o_address, o_pay, o_count, o_status, o_delivery
+		from olist
+	</select>
+	
+	
+</mapper>

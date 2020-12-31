@@ -1,0 +1,75 @@
+@charset "UTF-8";
+#sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: -100px;
+    }
+    
+    #askedhr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 270px;
+    	margin-top: -15px;
+    	margin-left: -114px; 
+   	}
+   	
+   
+   	.writeDiv{	/* 요소 전체다이브 */	
+   		width: 1200px; height: 800px; 
+   		margin: auto;
+   		margin-top: 50px;
+   	}
+   	
+   	#writeContent{
+   	 width: 800px; height: 500px;
+   	 text-align: center;
+   	 border-top: 1px solid rgb(127, 127, 127);
+     border-collapse: collapse;/* 선 여백 없애기 */ 
+     margin: auto;
+   	}
+   	
+   	#writeContent tr, #writeContent td{
+   	 border-bottom: 1px solid rgb(127, 127, 127);
+   	 height: 40px;	
+   	}
+
+   	
+	.tableTitle{
+   		background: rgba(153, 203, 56, 0.5);
+   		font-size: 18px;
+   		font-weight: bolder; 
+   	}
+   	
+   	#categorySelect{
+   		margin-left: -443px;
+   		width: 165px; height: 30px;
+   		font-size: 16px;
+   	}  	
+   	
+   	#titleText{
+   		margin-left: -90px;
+   		width: 510px; height: 25px;
+   		font-size: 16px;
+   	}
+   	
+   	#contentText{
+   		width: 600px; height: 300px;
+   		resize: none;
+   		font-size: 16px;
+   	}
+   	
+   	#cancleBtn, #submitBtn{
+   		display: inline-block;
+   		border: none;
+   		border-radius:5px;
+   		background: rgb(99, 165, 55);
+   		color: white;
+   		width: 160px; height: 45px;
+   		cursor: pointer;
+   		font-size: 18px;
+   		margin-top: 40px; margin-left: 60px;
+   	}
+   	
+   	#cancleBtn{
+   		margin-left: 400px;
+   		background: rgb(193, 223, 135);
+   	}

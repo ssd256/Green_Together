@@ -1,0 +1,57 @@
+@charset "UTF-8";
+     #insert_area{			/* 카테고리, Q 질문, A 답변 영역 */
+     	margin: 0px 0px 0px 22%;
+     }
+     
+     #insert{				/* 카테고리, Q 질문, A 답변 table */
+     	border-spacing: 30px;			
+     	font-weight: bold;
+     }
+     
+     #insert th{
+     	vertical-align: top;
+     	text-align: left;
+     	padding-top: 5px;
+     }
+     
+     #kind select{			/* 카테고리 선택 */
+     	width: 140px;	
+     	height: 40px;
+     	padding: 5px;
+     }
+     
+     #kind select:hover{
+     	cursor: pointer;
+     }
+     
+     #ask, #answer{			/* Q질문, A답변 칸 */
+     	width: 600px;
+     	height: 100px;
+     	padding: 10px;
+     	resize: none;
+     }
+    
+    #btn_area{				/* 취소, 등록 버튼 영역 */
+    	margin: 3% 0px 0px 45%;
+    }
+    
+    .btn{					/* 취소, 등록 버튼 */
+    	width: 70px;
+    	height: 30px;
+    	color: white;
+    	border: none;
+    	border-radius: 5px;
+    	margin: 0px 10% 0px 0px;
+    }
+    
+    .btn:hover{
+    	cursor: pointer;
+    }    
+    
+    #cancle{				 /* 취소 버튼 */		
+     	background: rgb(193, 223, 135);
+    }
+    
+    #okay{					/* 등록 버튼 */		
+     	background: rgb(99, 165, 55);
+    }

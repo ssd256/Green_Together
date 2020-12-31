@@ -1,0 +1,234 @@
+@charset "UTF-8";
+
+html,
+	body {
+	 margin: 0px;
+	 height: 100vh;
+	 font-family: '맑은 고딕';
+	}
+	section{
+	  margin: 0px 10%;
+	}
+	nav{
+		margin-top: 10px;
+	    display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	    align-items: center; /* 위아래 기준 중앙정렬 */
+	    min-width: 1400px;
+	    margin: 0px 10%;
+	}
+	header a {		
+	 text-decoration: none;
+	 color: black;
+	 font-size: 24px; 
+	 font-weight: bold;
+	}
+	
+	/* 그림 위에 헤더 시작*/
+	#loginDiv{
+	 	background : rgb(234, 234, 234);
+    	width : 100%;
+    	height : auto;
+    	align-items: center;
+	}
+	#loginDiv.sticky{
+	 	position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+/* 		height : 51.98px; */
+		z-index: 10000;
+		align-items: center;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+	}
+	
+	
+	.input, .input2{
+		border: none;
+		background: none;
+		margin: 15px 0; 
+		margin-right: 30px; 
+		font-size: 15px;
+		font-weight:bold;
+    	cursor: pointer;
+	}
+	 .input2{
+	 margin-top: 0px;
+	 }
+	.input:hover,.input2:hover{
+    	text-decoration: underline;
+	}
+	/* 그림 위에 헤더 끝*/
+	/* 이미지 슬라이드 */
+	.slick-items{
+		width: 100%;
+		height: 900px;
+		margin: auto;
+		position: relative;
+		z-index: 4;
+	}
+	.slick-items img{
+		width: 100%;
+		height: 900px;
+	}
+	.prev{
+		position: relative;
+		display : inline-block;
+		z-index: 7;
+		top: -500px;
+		left : 30px;
+	}
+	.prev img{
+		width: 50px;
+	}
+	.next{
+		position: relative;
+		display : inline-block;
+		z-index: 7;
+		top: -500px;
+		left: 1750px;
+	}
+	.next img{
+		width: 50px;
+	}
+	/* 이미지 슬라이드 */
+	.slick_items{
+		width: 100%;
+		height: 300px;
+		position:relative;
+		z-index: 4;
+	}
+	
+	.slick_items img{
+		width: 100%;
+		height: 280px;
+		border-radius: 0px 0px 200px 200px;
+	}
+	/*  */
+	/*  */
+	/*  */
+	/* 중현씨 */
+	
+	#main_menu{
+	    list-style: none;
+	    display: flex;
+	}
+	#main5:hover #sub_menu5 {
+		display: block;
+		position: absolute;
+	}
+	#main4:hover #sub_menu4 {
+		display: block;
+		position: absolute;
+	}
+	.main_menu_li{
+	    margin: 10px 35px;
+		color: black;
+		font-size: 20px; 
+		font-weight: bold;
+	}
+	
+	#sub_menu5{
+		margin-top:2px;
+		list-style: none;
+		width: 300px;
+	}
+	#sub_menu4{
+		margin-top:2px;
+		list-style: none;
+		width: 300px;
+	}
+	.sub_btn{
+		font-size: 14px;
+		padding: 8px 12px;
+		border-radius: 7px;
+	}
+	.sub_btn:hover{
+		background: rgb(234, 234, 234);
+	}
+	/* 중현씨꺼 끝 */
+/* 	#logo{ */
+/* 		margin-left: 80px; */
+/* 	} */
+	#div2{
+		position: relative;
+		left: 150px;
+	}
+	/*  */
+	/*  */
+	/* nav 끝 */
+	#headerhr{ margin-top: 20px;}
+	
+	/* sweetAlert에 대한 css */
+	.swal-footer {
+	text-align: center;
+	}
+	.swal-text{
+		font-weight: bold;
+		color:black;
+	}
+	/* sweetAlert에 대한 css */
+	
+	#smallMenu{
+		display: none;
+	}
+	#smallMenu.show{
+		display: flex;
+ 		justify-content: space-between;
+		align-items: center;
+		width: 60%;
+		float: left;
+		margin: 15px 0;
+		margin-left: 20%;
+		transition: 0.5s;
+		text-align: center;
+	}
+	#smallMenu a{
+		font-size: 15px;
+		margin: 0 5%;
+	}
+	#alarambell{
+		width: 20px;
+		height: 20px;
+	}
+	#alaramBtn{
+		margin: 0px;
+	}
+	#alarambox{
+		position: fixed;
+		text-align:left;
+		top: 90px;
+		right: 0px;
+		width: 300px;
+		height: 600px;
+		z-index: 10000;
+		align-items: center;
+		background: rgb(234, 234, 234);
+		overflow:scroll;
+		box-shadow: 5px 5px 10px 2px gray;
+	}
+	#alaramTable{
+		margin: 0 20px;
+		width: 80%;
+		border-spacing: 0px 15px;
+	}
+	#alarmUrl{
+		font-size: 16px;
+		width : 200px;
+	}
+	.newAlarmbox{
+		margin: 0px 20px;
+		align-items: center;
+	}
+	#alarmDate{
+		float:right;
+		font-size: 12px;
+	}
+	.alaramTitle{
+		margin: 20px 0;
+	}
+	
+	.newAlarmbox:hover{
+		cursor: pointer;
+		font-weight: bold;
+	}

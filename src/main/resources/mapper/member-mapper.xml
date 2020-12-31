@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<select id="memberLogin" resultMap="memberResultSet">
+		select *
+		from member
+		where M_ID=#{userId}
+			  and M_ENABLE='N'
+	</select>
+	
+	<select id="checkUserWithSessionKey" resultMap="memberResultSet">
+		select *
+		from member
+		where M_TEM=#{sessionId}
+			  and M_ENABLE='N'
+	</select>
+	
+	<select id="kakaoLogin" resultMap="memberResultSet">
+		select *
+		from member
+		where M_KAKAO=#{userKakao}
+			  and M_EAMIL=#{userEmail}
+			  and M_ENABLE='N'
+	</select>
+
+	<resultMap type="Member" id="memberResultSet">
+		<id column="M_ID" property="userId"/>
+		<result column="M_PWD" property="userPwd"/>
+		<result column="M_TEM" property="usertem"/>
+		<result column="M_NICKNAME" property="userNickName"/>
+		<result column="M_NAME" property="userName"/>
+		<result column="M_BIRTHDAY" property="userBirthday"/>
+		<result column="M_GENDER" property="userGender"/>
+		<result column="M_ADDRESS" property="userAddress"/>
+		<result column="M_EAMIL" property="userEmail"/>
+		<result column="M_PHONE" property="userPhone"/>
+		<result column="M_INTERST" property="userInterst"/>
+		<result column="M_JOB" property="userJob"/>
+		<result column="M_ENABLE" property="userEnable"/>
+		<result column="M_GRADE" property="userGrade"/>
+		<result column="M_KAKAO" property="userKakao"/>
+	</resultMap>
+	<insert id="insertMember">
+   		insert into member
+   		values( #{userId}, #{userPwd}, default, #{userNickName}, #{userName}, #{userBirthday}, 
+   				#{userGender}, #{userAddress}, #{userEmail}, #{userPhone},  #{userInterst},
+   				#{userJob}, default, 'user', #{userKakao})
+   </insert>
+   
+	<update id="updateMember">
+   		update member
+   		set M_NICKNAME=#{userNickName}, M_ADDRESS=#{userAddress}, M_EAMIL=#{userEmail}, M_PHONE=#{userPhone}, M_INTERST=#{userInterst}, M_JOB=#{userJob}, M_KAKAO=#{userKakao}
+   		where M_ID=#{userId}	
+   </update>
+   
+     <select id="nickNameCheck" resultType="_int">
+   		select count(*)
+		from member
+		where M_NICKNAME=#{userNickName} and M_ENABLE='N'
+   </select>
+
+     <select id="checkId" resultType="_int">
+   		select count(*)
+		from member
+		where M_ID=#{userId}
+   </select>
+   
+    <select id="emailCheck" resultType="_int">
+   		select count(*)
+		from member
+		where M_EAMIL=#{userEmail} and M_ENABLE='N'
+   </select>
+   
+   <update id="deleteMember">
+   		update member
+   		set M_ENABLE = 'Y'
+   		where M_ID=#{userId}	
+   </update>
+   
+   <select id="searchUser" resultMap="memberResultSet">
+		select M_ID
+		from member
+		where M_EAMIL=#{userEmail}
+			  and M_ENABLE='N'
+	</select>
+	
+   <update id="updatePwd">
+		update member
+		set M_PWD=#{newPwd}
+		where M_ID=#{id}
+   </update>
+   
+   <update id="updateTem">
+		update member
+		set M_TEM=#{userTem}
+		where M_ID=#{userId}
+   </update>
+   
+    <select id="searchPwdCheck" resultType="_int">
+   		select count(*)
+		from member
+		where M_EAMIL=#{email}
+			  and M_ID=#{id}
+			  and M_ENABLE='N'
+   </select>
+   
+   <select id="participationUser" resultMap="participationResultSet2">
+		select b_no, v_status, b.b_title, v.V_RECRUITMENT, v.V_APPLICANT, substr(V_LOCATION, 1, 2) as v_Location,  substr(v_day, 12, 10) as v_day
+		from board b
+            join volunteer v using(b_no)
+        	join PARTICIPATION p using(b_no) 
+		where p.m_id=#{loginUserId} and p.V_STATUS='N'
+		order by b_no desc
+   </select>
+   
+   <resultMap type="Participation" id="participationResultSet2">
+		<id column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="V_STATUS" property="vStatus"/>
+		<result column="b_title" property="bTitle"/>
+		<result column="v_Location" property="bLocation"/>
+		<result column="V_RECRUITMENT" property="vRecruitment"/>
+		<result column="V_APPLICANT" property="vApplicant"/>
+		<result column="v_day" property="vDay"/>
+	</resultMap>
+	
+		<select id="sharesParticipate" resultMap="sharesMemberResultSet">
+		select *
+		from slist
+		    join apply a using(b_no)
+		where a.s_applicant=#{loginUserId}
+		order by b_no desc
+	</select>
+	
+	<select id="sharesFileParticipate" resultMap="filesMemberResultSet">
+		select *
+		from files
+		    join apply a using(b_no)
+		where a.s_applicant=#{loginUserId} and f_status = 'N' and f_level = 0
+		order by b_no desc
+	</select>
+	
+	<resultMap type="com.kh.green.shares.model.vo.Shares" id="sharesMemberResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="M_ID" property="mId"/>
+		<result column="B_TITLE" property="bTitle"/>
+		<result column="B_CONTENT" property="bContent"/>
+		<result column="B_CATEGORY" property="bCategory"/>
+		<result column="B_DATE" property="bDate"/>
+		<result column="B_MODIFYDATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+		<result column="S_STATUS" property="sStatus"/>
+		<result column="S_ADDRESS" property="sAddress"/>
+		<result column="S_STOCK" property="sStock"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.green.common.Files" id="filesMemberResultSet">
+		<id column="F_NUM" property="fNum"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="F_PATH" property="fPath"/>
+		<result column="F_ORIGINNAME" property="fOriginName"/>
+		<result column="F_CHANGENAME" property="fChangeName"/>
+		<result column="F_LEVEL" property="fLevel"/>
+		<result column="F_STATUS" property="fStatus"/>
+	</resultMap>
+	
+	
+	
+	
+	<!-- 문의사항 보기 -->
+	<resultMap type="com.kh.green.question.model.vo.Question" id="myPageAskedListResultSet">
+		<id column="B_NO" property="bNo"/>
+		<result column="Q_CATEGORY" property="qCategory"/>
+		<result column="M_ID" property="mId"/>
+		<result column="M_NICKNAME" property="mNickname"/>
+		<result column="B_TITLE" property="bTitle"/>
+		<result column="B_CONTENT" property="bContent"/>
+		<result column="B_CATEGORY" property="bCategory"/>
+		<result column="B_DATE" property="bDate"/>
+		<result column="B_MODIFYDATE" property="bModifyDate"/>
+		<result column="B_STATUS" property="bStatus"/>
+	</resultMap>
+	
+	<select id="myPageAskedList" resultMap="myPageAskedListResultSet">
+	  select b.b_no, q.q_category, m_nickname, b_title, b_content, b_category, b_ModifyDate, b_date
+         	,(select count(*) from comments where b_no=b.b_no and c_status='N') AS recnt
+		from board b
+			join member m
+            on (b.m_id = m.m_id)
+        	join question q
+            on (q.b_no = b.b_no)
+            where b_status='N' and b_category = '문의사항' and b.m_id =#{loginUserId}
+            order by b_no desc 
+	</select>
+</mapper>

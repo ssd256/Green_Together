@@ -1,0 +1,234 @@
+@charset "UTF-8";
+ #sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: -100px;
+    }
+    
+    #Detailhr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 270px;
+    	margin-top: -15px;
+    	margin-left: -114px; 
+   	}
+   	
+   
+   	.detailDiv{	/* 요소 전체다이브 */	
+   		width: 1200px; height: 1000px; 
+   		margin: auto;
+   		
+   	}
+   	
+   	#detailContent{
+   	 width: 750px; height: 410px;
+   	 text-align: center;
+   	 border-top: 1px solid rgb(127, 127, 127);
+     border-collapse: collapse;/* 선 여백 없애기 */ 
+     margin: auto;
+     margin-top: 50px;
+   	}
+   	
+   	#detailContent tr, #detailContent td{
+   	 border-bottom: 1px solid rgb(127, 127, 127);
+   	 height: 40px;
+   	 padding-left: 10px;	
+   	}
+
+   	
+	.tableTitle{
+   		background: rgba(153, 203, 56, 0.5);
+   		font-weight: bolder;
+   	}
+   	
+   	
+   	#listBtn{
+   		margin-left: 230px;
+   		border-radius: 5px;
+   		width:60px; height:30px;
+   		background: rgb(99, 165, 55);
+   		color: white;
+   		cursor: pointer;
+   	}
+   	
+   	#deleteBtn{
+   		background: rgb(193, 223, 135);
+   		border-radius: 5px;
+   		width:60px; height:30px;
+   		margin-right: 250px;
+   		color: white;
+   		cursor: pointer;
+   		float: right; 
+   	}
+   	
+   	#editBtn{
+   		margin-left: 520px;
+   		border-radius: 5px;
+   		width:60px; height:30px;
+   		background: rgb(99, 165, 55);
+   		color: white;
+   		cursor: pointer; 		
+   	}
+   	     
+    p{ 
+   		display: inline-block;
+   		font-weight: bold;
+   		font-size: 18px;
+   		margin-left: 30px;
+   		margin-top: 13px;
+   	}    
+   
+   
+   	/* 댓글 부분 css */
+   	.container{
+   		margin: 20px 0px 0px 0px;
+   	}
+   	
+   	.containerDiv{
+   		width: 750px; height: 200px;
+   		background-color: rgba(153, 203, 56, 0.5);
+   		position: relative;
+   		margin: 0px 0px 20px 225px;
+   		
+   	}
+   
+   .backCommentDiv{/* 답변 등록 후 출력시 생성되는 div */
+  		width: 750px; height: 200px;
+   		background-color: rgba(153, 203, 56, 0.5);
+   }
+   	
+   	.commentList{
+   		width: 750px; height: 200px;
+   		background-color: white;
+   		position: relative;
+   		margin: 0px 0px 20px 225px;
+   	}
+   	
+   	.input-group{
+   		margin-top: 20px;
+   	}
+   	
+   	.containerDiv label{
+   		font-size: 18px;
+   		font-weight: bold;
+   		margin-left: 27px;
+   		margin-top: 100px;
+   		position: relative;
+   	}
+   	
+   	.commentDiv{
+   		font-size:small;
+   		word-wrap: break-wrod;
+   	}
+   	
+   	#commentInsertForm{/* 텍스트 영역의 배경 */
+   		width: 680px; height: 100px;
+  	 	background: white;
+  	 	margin: 30px;
+   		position: relative;
+   	}
+   	
+   	.form-control{/* 답변 입력하는 텍스트영역 */
+   		width: 680px; height: 100px;
+   		resize: none; 
+   		position: absolute;
+   		word-wrap: break-word;
+   	}
+   	
+   	.editForm{/* 답변 수정하는 텍스트영역 */
+   		width: 680px; height: 100px;
+   		resize: none; 
+   		margin-left: 27px;
+   		margin-top: 50px;
+   		white-space:normal;
+   		position: absolute;
+   	}
+   	
+   	.editOkbtn{/* 수정버튼 입력 후 확인 */
+	 	border-radius: 5px;
+   		width:60px; height:30px;
+   		background: orangered;
+   		color: white;
+   		cursor: pointer;
+		float: right;
+		position: absolute;
+   		margin-top: 160px;
+	   	margin-left: 30px;
+
+	}
+   	
+   	.btn-default{
+   		border-radius: 5px;
+   		width:60px; height:30px;
+   		background: rgb(99, 165, 55);
+   		color: white;
+   		cursor: pointer;
+		position: absolute;
+   		margin-top: 110px;
+   		margin-left: 620px;
+	}
+	
+	.commentDiv{
+		width: 680px; height: 100px;
+  	 	background: white;
+		margin-left: 30px;
+	}
+	
+	#answerDate{
+		float: right;
+	}
+ 	
+ 	.commentContent{/* 답변 등록시 출력 영역 */
+ 		width:300px; height:300px;
+ 	}
+ 	
+ 	
+ 	#answerUpdateBtn{/* 문의사항 수정버튼 */
+ 	   	border-radius: 5px;
+   		width:60px; height:30px;
+   		background: rgb(99, 165, 55);
+   		color: white;
+   		cursor: pointer;
+ 		float: right;
+		margin-right: 40px;
+		margin-top: 10px;
+ 	}
+ 	
+ 	#answerDeleteBtn{/* 문의사항 삭제버튼 */
+ 	   	border-radius: 5px;
+   		width:60px; height:30px;
+   		color: white;
+   		cursor: pointer;
+ 		float: right;
+		margin-right: 20px;
+		margin-top: 10px;
+		background: rgb(193, 223, 135);
+ 	}
+ 	
+ 	
+ 	/* 이전글 다음글 css */
+   	#npTable{
+   		width: 800px; height: 80px;
+   		text-align: center;
+   	 	border-top: 1px solid rgb(127, 127, 127);
+     	border-collapse: collapse;/* 선 여백 없애기 */ 
+     	margin-top: 100px;
+     	cursor: pointer;
+     	margin-left: 400px;
+     	margin: auto;
+     	position: inherit;
+   	}
+   	
+   	#npTable td {
+   		 border-bottom: 1px solid rgb(127, 127, 127);
+   		 padding-left: 10px;		
+   	}
+   	
+   	.nextTitle{
+   		background: rgba(153, 203, 56, 0.5);
+   		font-weight: bold;
+   	}
+   	
+   	.askedTitle{
+   	width: 500px;
+   	}
+   

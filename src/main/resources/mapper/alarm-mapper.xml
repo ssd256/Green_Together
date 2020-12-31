@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="alarmMapper">
+
+	<select id="selectNewList" resultMap="alarmResultSet">
+		select *
+		from ALARM
+		where M_ID=#{M_ID} and ALARM_STATUS='N'
+		order by ALARM_NO desc
+	</select>
+	
+	<select id="memberSerachId" resultMap="memberResultSet">
+		select M_ID
+		from member
+		where M_NICKNAME=#{mNickname}
+			  and M_ENABLE='N'
+	</select>
+	
+	<resultMap type="Member" id="memberResultSet">
+		<id column="M_ID" property="userId"/>
+		<result column="M_PWD" property="userPwd"/>
+		<result column="M_TEM" property="usertem"/>
+		<result column="M_NICKNAME" property="userNickName"/>
+		<result column="M_NAME" property="userName"/>
+		<result column="M_BIRTHDAY" property="userBirthday"/>
+		<result column="M_GENDER" property="userGender"/>
+		<result column="M_ADDRESS" property="userAddress"/>
+		<result column="M_EAMIL" property="userEmail"/>
+		<result column="M_PHONE" property="userPhone"/>
+		<result column="M_INTERST" property="userInterst"/>
+		<result column="M_JOB" property="userJob"/>
+		<result column="M_ENABLE" property="userEnable"/>
+		<result column="M_GRADE" property="userGrade"/>
+		<result column="M_KAKAO" property="userKakao"/>
+	</resultMap>
+	
+	<resultMap type="Alarm" id="alarmResultSet">
+		<id column="ALARM_NO" property="alarmNo"/>
+		<result column="ALARM_TITLE" property="alarmTitle"/>
+		<result column="ALARM_CONTENT" property="alarmContent"/>
+		<result column="ALARM_TYPE" property="alarmType"/>
+		<result column="ALARM_DATE" property="alarmDate"/>
+		<result column="ALARM_ISREAD" property="alarmIsread"/>
+		<result column="ALARM_URL" property="alarmURL"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="userId"/>
+		<result column="ALARM_STATUS" property="alarmStatus"/>
+	</resultMap>
+
+	<resultMap type="Alarm" id="alarmListSet">
+		<id column="RNUM" property="rnum"/>
+		<result column="ALARM_NO" property="alarmNo"/>
+		<result column="ALARM_TITLE" property="alarmTitle"/>
+		<result column="ALARM_CONTENT" property="alarmContent"/>
+		<result column="ALARM_TYPE" property="alarmType"/>
+		<result column="ALARM_DATE" property="alarmDate"/>
+		<result column="ALARM_ISREAD" property="alarmIsread"/>
+		<result column="ALARM_URL" property="alarmURL"/>
+		<result column="B_NO" property="bNo"/>
+		<result column="M_ID" property="userId"/>
+		<result column="C_STATUS" property="cStatus"/>
+	</resultMap>	
+<!-- 알람 등록 -->
+	<insert id="insertAlarm">
+		insert into ALARM 
+		values(SEQ_ALARM_NO.nextval, '${alarmTitle}', '${alarmContent}', '${alarmType}', sysdate, 'N', '${alarmURL}', '${bNo}', '${userId}', 'N')
+	</insert>
+		
+<!-- 알람 클릭 -->
+	<update id="alarmClick">
+		update ALARM set ALARM_ISREAD='Y'
+		where ALARM_NO=${alarmNo}
+	</update>
+	
+	<select id="searchUrl" resultMap="alarmResultSet">
+		select ALARM_URL
+		from ALARM
+		where ALARM_NO=#{alarmNo}
+	</select>
+	
+	<select id="cNo2bNo" resultType="_int">
+		select B_NO
+		from COMMENTS
+		where C_NO=#{cNo}
+	</select>
+	
+	<update id="deleteAlarm">
+		update ALARM set ALARM_STATUS='Y'
+		where B_NO=${bNo}
+	</update>
+</mapper>

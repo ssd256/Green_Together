@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+	section{
+		margin: 0;
+	}
+	
+	#sectionTitle{
+    	font-weight: bolder;
+    	font-size: 30px;
+    	margin-left: 100px;
+    	margin-top: 20px;
+   		 }
+    
+    
+   	 #askedhr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 205px;
+    	margin-left: 90px;
+    	margin-top: -15px;
+   		}
+   		
+   	.askedDiv{	/* 요소 전체다이브 */	
+   		width: 1000px;
+   		margin: auto;
+   		margin-top: 50px;
+   		margin-left: 90px;
+   	}
+		
+	.category_tab{
+    	margin: 20px 0px 20px 0px;
+  		display: inline-block;	
+  		width: 500px;
+   		 }
+    
+   .category{/* 카테고리 탭 */
+    	background : rgb(153, 203, 56);
+    	color: white;
+    	display: inline-block;
+    	padding: 10px;
+    	margin: 0px -3px 0px 0px;
+    	cursor: pointer;
+    	font-size: 16px;
+    	border: none;
+    	border-radius: 5px;
+    	}
+    
+   .askedList_div{
+		width: 800px; height: 500px;
+ 	  } 
+   
+  #askedTable {/* 목록내용 테이블 */
+   	width: 1200px; height: 50px; 
+   	border-top: 1px solid rgb(127, 127, 127);
+   	border-collapse: collapse;/* 선 여백 없애기 */ 
+   	margin: auto;
+   	position:relitive;
+   }
+   
+   .askedTtr{
+    height: 50px; 
+   	background: rgba(153, 203, 56, 0.5); 
+   	border-bottom: 1px solid rgb(127, 127, 127);	
+   }
+   
+   .askedTtd{
+   	text-align: center;
+   	border-bottom: 1px solid rgb(127, 127, 127);
+   	cursor: pointer;
+   }
+   
+   .contentTR{
+    height: 50px; 
+   }
+   
+   #categoryTd{
+   	font-weight: bolder;
+   }
+   
+   #title{
+   		text-align: left;
+   	}
+   		
+   #answerOk{
+   	 background-color: gold;
+   	 color: white;  
+	 font-size: 14px;
+	 border-radius: 5px; 
+	 width: 60px;
+	 margin-left: -40px;
+   }
+
+   
+  .pagination{				/* 페이징 버튼 영역 */
+    	margin: 30px 0px 0px 450px; 
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    }
+    
+    .page, .prevBtn, .nextBtn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top; 
+    	margin-right: 0px;
+    }
+    
+    .prevBtn{
+    	margin-right: -1px;
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .nextBtn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }

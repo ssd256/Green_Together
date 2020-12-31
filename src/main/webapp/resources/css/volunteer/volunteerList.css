@@ -1,0 +1,222 @@
+@charset "UTF-8";
+	#volH2{
+		display: inline-block;
+    }
+    
+    /* 봉사활동 등록버튼 */
+    #addVBtn{
+    	color : white;
+    	background : rgb(193, 223, 135);
+    	border: none;
+    	width : 130px;
+    	height: 40px;
+    	font-size: 16px;
+    	font-weight: bold;
+		border-radius: 10px;
+		margin: 0px 5%;
+    }
+    #updateInform{
+    	margin-left: -80px;
+    }
+    
+	/*  화면에 녹색 줄 */
+	.greenDiv{
+		height : 4px;
+		width : 100%;
+		background : rgb(99, 165, 55);
+		border-radius: 10px;
+		margin-top: -10px;
+	}
+	
+    
+    /* 모집장소+모집상태 div */
+	#vSelectOption{
+		animation-fill-mode: forwards; /* CSS유지 */
+		display: flex;
+		margin: 0px 10%;
+		height: 180px;
+	}
+	
+	/* 봉사지역 */
+	#vOption1{
+		flex: 4;
+	}
+	/* 장소버튼 */
+	.localBtn{
+		background : white;
+		border: 1px solid white;
+		cursor: pointer;
+		font-size: 19px;
+		outline: none;
+		border-radius: 20px;
+	}
+	.vOpDiv{
+		display: flex;
+	}
+	.vOp1_1{
+		flex: 1.5;
+		text-align:center;
+	}
+	.vOp1_2{
+		flex: 8.5;
+	}
+	#vOpDetail{
+		width: 400px;
+	}
+	
+	
+	/* 모집상태 */
+	#vOption2{
+		flex: 3;
+	}
+	/* 모집상태 버튼 */
+	.statusBtn{
+		background : white;
+		border: 1px solid white;
+		cursor: pointer;
+		font-size: 19px;
+		outline: none;
+		border-radius: 20px;
+	}
+	
+	/* 모집기간 */
+	#vOption3{
+		flex: 3	;
+	}
+	
+	
+	
+	
+	/* 검색결과 봉사활동 리스트 큰 div */
+	#dataDiv{
+		margin: 0px 10%;
+		height: 1000px;
+	}
+	/*  화면에 연두색 줄 */
+	.yellowGreenDiv{
+		height : 4px;
+		width : 100%;
+		background : rgb(193, 223, 135);
+		border-radius: 10px;
+	}
+	
+	/* 리스트 큰 div */
+	.dataList{
+		margin: 0px 10%;
+		height: 110px;
+		display: flex;
+		cursor: pointer;
+	}
+	/* 위치 */
+	.data1{
+		flex: 1;
+		text-align: center;
+		line-height: 100px;
+	}
+	.data1 strong{
+		font-size: 20px;
+		font-weight: bolder;
+	}
+	.data2{
+		flex: 7.5;
+	}
+	.data2_div{
+		display: flex;
+		height: 50px;
+	}
+	.data2_div1{
+		flex: 3.5;
+	}
+	.data2_div2{
+		flex: 5;
+	}
+	.data2_div3{
+		flex: 1.5;
+	}
+	
+	.data3{
+		flex: 1.5;
+	}
+	.data3_div{
+		border-radius : 8px;
+		background : rgb(193, 223, 135);
+		color : white;
+		text-align: center;
+		font-weight:bold;
+		width: 80px;
+		height: 40px;
+		margin: 35px;
+		line-height: 35px;
+	}
+	
+	/* default */
+	#local1{
+		background:rgb(99, 165, 55); 
+		font-weight:bolder;
+		color:white;
+	}
+	#status1{
+		background:rgb(99, 165, 55); 
+		font-weight:bolder;
+		color:white;
+	}
+	#optionBtn{
+		background:rgb(99, 165, 55); 
+		font-weight:bolder;
+		color:white;
+		font-size: 18px;
+		border: none;
+		border-radius: 5px;
+		width: 100px;
+		height: 40px;
+	}
+	
+		
+    .pagination{				/* 페이징 버튼 영역 */
+    	margin: 50px 0 0 38%;
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    	display: block;
+    }
+    
+    .page, .prev_btn, .next_btn{		/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top;
+    	margin-right: -1px;
+    }
+    
+    .prev_btn{
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .next_btn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+    
+    .finishVolunteerBtn{
+    	border-radius : 8px;
+		color : white;
+		text-align: center;
+		font-weight:bold;
+		width: 80px;
+		height: 40px;
+		margin: 35px;
+		line-height: 35px;
+    	background: rgb(190, 190, 190);
+    }
+    
+    #emptySpan{
+    	font-size: 18px;
+    }
+	

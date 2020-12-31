@@ -1,0 +1,170 @@
+@charset "UTF-8";
+ #askedtitle{
+    font-weight: bolder;
+    font-size: 30px;
+    margin-left: -100px;
+   }
+    
+    #titlehr{ 
+    	border: solid 4px rgb(157, 214, 94);
+    	width: 210px;
+    	margin-top: -15px;
+    	margin-left: -114px; 
+   	}
+   	
+   	#adminBtn{
+    	background : rgb(99, 165, 55);
+    	color: white;
+    	font-weight: bold;
+    	padding: 10px;
+    	margin: 20px 0px 0px 160px;
+    	cursor: pointer;
+    	font-size: 12px;
+    	border: none;
+    	border-radius: 5px;
+    	position: absolute;
+   	}
+    
+    .category_tab{
+    	margin: 20px 0px 20px 932px;
+  		display: inline-block;	
+  		width: 500px;
+    }
+    
+   .category{/* 카테고리 탭 */
+    	background : rgb(153, 203, 56);
+    	color: white;
+    	display: inline-block;
+    	padding: 10px;
+    	margin: 0px -3px 0px 0px;
+    	cursor: pointer;
+    	font-size: 16px;
+    	border: none;
+    	border-radius: 5px;
+    	}
+    
+   .askedList_div{
+		width: 1200px; height: 700px;
+		margin-left: 150px;
+   } 
+   
+  	#askedSearch{/* 검색 */
+		padding-top: 20px;
+     	text-align: center;
+     	height: 50px;
+     }
+     
+     #askedSearch select{/* 검색유형 선택 */
+     	width: 130px;	
+     	height: 30px;
+     	margin: 0px 20px 0px 0px;
+     	padding: 0px 0px 0px 5px;
+     }
+     
+     #searchText{/*검색 칸 */
+    	width: 500px;
+    	height: 30px; 
+    	margin: 0px 10px 0px 0px;
+    	padding: 0px 0px 0px 10px;
+     }
+     		
+     #searchBtn{/* 검색 버튼 */
+     	background : rgb(99, 165, 55);
+     	padding: 5px;
+     	width: 75px;
+     	height: 35px;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border-radius: 5px;
+		cursor: pointer;
+     }
+   
+  #askedTable {/* 목록내용 테이블 */
+   	width: 1200px; height: 50px; 
+   	border-top: 1px solid rgb(127, 127, 127);
+   	border-collapse: collapse;/* 선 여백 없애기 */ 
+   	margin: auto;
+   	position:relitive;
+   }
+   
+   .askedTtr{
+    height: 50px; 
+   	background: rgba(153, 203, 56, 0.5); 
+   	border-bottom: 1px solid rgb(127, 127, 127);	
+   }
+   
+   .askedTtd{
+   	text-align: center;
+   	border-bottom: 1px solid rgb(127, 127, 127);
+   	cursor: pointer;
+   }
+   
+   .contentTR{
+    height: 50px; 
+   }
+   
+   #categoryTd{
+   	font-weight: bolder;
+   }
+   
+   #state{/* 답변완료 표시가 보이는 공간 */
+   	width: 60px;
+   text-align: center;
+   }
+   
+   #title{
+   		text-align: left;
+   	}
+   		
+   #answerOk{
+   	 background-color: gold;
+   	 color: white;  
+	 font-size: 14px;
+	 border-radius: 5px; 
+	 width: 60px;
+	 margin-left: -40px;
+   }
+   
+   #writeBtn{/* 글쓰기 버튼  */
+   	margin-top:20px;
+   	border-radius: 5px;
+   	width:80px; height:30px;
+   	background: rgb(99, 165, 55);
+   	color: white;
+   	cursor: pointer;
+   	float: right;
+   }
+   
+  .pagination{				/* 페이징 버튼 영역 */
+    	margin: 50px 0 0 38%; 
+    	text-align: center;
+    	line-height: 3;
+    	height: 100px;
+    }
+    
+    .page, .prevBtn, .nextBtn{/* 페이징 버튼 */
+    	float: left;
+    	text-decoration: none;
+    	width: 38px;
+    	height: 38px;
+    	line-height: 38px;
+    	padding: 0px 10px 0px 10px;
+    	font-size: 18px;
+    	color: black;
+    	border : 1px solid #d9d9d9;
+    	background: #fff;
+    	vertical-align: text-top; 
+    	margin-right: -1px;
+    }
+    
+    .prevBtn{
+    	margin-right: -1px;
+    	border-radius: 17px 0 0 17px;
+    }
+    
+    .nextBtn{
+    	margin-left: -1px;
+    	border-radius: 0 17px 17px 0;
+    }
+    
