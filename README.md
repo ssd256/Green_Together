@@ -67,7 +67,7 @@
 
 ### :computer: 화면 일부
 - 친환경 상품 상세 조회
-![]   
+![친환경 상품 상세 조회](https://user-images.githubusercontent.com/63248384/104600137-f6895300-56bb-11eb-9559-c47a2f93cc4a.PNG)   
 
 - 친환경 상품 등록
 - 장바구니
