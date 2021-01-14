@@ -73,7 +73,7 @@
     
 - 상품 등록   
    
-![상품 등록](https://user-images.githubusercontent.com/63248384/104600801-d1e1ab00-56bc-11eb-8ff2-bff12390085a.PNG)   
+
    
    
 - 장바구니
@@ -81,7 +81,13 @@
 ![장바구니](https://user-images.githubusercontent.com/63248384/104600526-73b4c800-56bc-11eb-8006-4857abfbadc3.PNG)
    
     
-- 결제하기 
+- 주문하기 배송지 변경
+
+
+- 결제창   
+![결제하기 일부](https://user-images.githubusercontent.com/63248384/104601364-7fed5500-56bd-11eb-8b49-44124d8eb1a0.PNG)   
+   
+   
 - 마이페이지 일부
 - 관리자페이지 일부
 - 자주 묻는 질문 게시판
