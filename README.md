@@ -66,7 +66,7 @@
 
 
 ### :computer: 화면 일부
-- 친환경 상품 상세 조회
+- 친환경 상품 상세 조회 일부
 
 ![친환경 상품 상세 조회](https://user-images.githubusercontent.com/63248384/104600137-f6895300-56bb-11eb-9559-c47a2f93cc4a.PNG)   
    
@@ -81,6 +81,8 @@
 
 ![장바구니](https://user-images.githubusercontent.com/63248384/104600526-73b4c800-56bc-11eb-8006-4857abfbadc3.PNG)
    
+- 찜하기   
+
        
 - 주문하기 배송지 변경   
 
@@ -96,6 +98,11 @@
 
 ![마이페이지 일부](https://user-images.githubusercontent.com/63248384/104603943-436f2880-56c0-11eb-8f4e-93afde94edfb.PNG)   
     
+- 후기 작성   
+
+
+- 후기 조회   
+
     
 - 관리자페이지 일부   
 
