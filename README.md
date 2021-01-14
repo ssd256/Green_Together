@@ -87,10 +87,12 @@
 
 
 - 결제창   
+   
 ![결제하기 일부](https://user-images.githubusercontent.com/63248384/104601364-7fed5500-56bd-11eb-8b49-44124d8eb1a0.PNG)   
    
    
-- 마이페이지 일부   
+- 마이페이지 일부  
+   
 ![마이페이지 일부](https://user-images.githubusercontent.com/63248384/104603943-436f2880-56c0-11eb-8f4e-93afde94edfb.PNG)   
     
     
@@ -99,5 +101,7 @@
 ![관리자페이지 일부](https://user-images.githubusercontent.com/63248384/104603966-49fda000-56c0-11eb-8d2c-f1bcd793780a.PNG)   
     
     
-- 자주 묻는 질문 게시판
+- 자주 묻는 질문 게시판   
+
+![자주 묻는 게시판 일부](https://user-images.githubusercontent.com/63248384/104604640-e758d400-56c0-11eb-8ae9-6aa5ede21eb7.PNG)
 <br>
