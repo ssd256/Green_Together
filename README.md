@@ -67,37 +67,38 @@
 
 ### :computer: 화면 일부
 - 친환경 상품 상세 조회
-   
+
 ![친환경 상품 상세 조회](https://user-images.githubusercontent.com/63248384/104600137-f6895300-56bb-11eb-9559-c47a2f93cc4a.PNG)   
    
     
 - 상품 등록   
-   
+
 ![상품 등록](https://user-images.githubusercontent.com/63248384/104604407-ac56a080-56c0-11eb-963b-6d65bfa41156.PNG)   
 
    
    
 - 장바구니
-   
+
 ![장바구니](https://user-images.githubusercontent.com/63248384/104600526-73b4c800-56bc-11eb-8006-4857abfbadc3.PNG)
    
        
-- 주문하기 배송지 변경
+- 주문하기 배송지 변경   
+
 ![주문하기 배송지 변경2](https://user-images.githubusercontent.com/63248384/104601958-381afd80-56be-11eb-9b4a-e40c4b66c1b1.PNG)      
 
 
 - 결제창   
-   
+
 ![결제하기 일부](https://user-images.githubusercontent.com/63248384/104601364-7fed5500-56bd-11eb-8b49-44124d8eb1a0.PNG)   
    
    
 - 마이페이지 일부  
-   
+
 ![마이페이지 일부](https://user-images.githubusercontent.com/63248384/104603943-436f2880-56c0-11eb-8f4e-93afde94edfb.PNG)   
     
     
 - 관리자페이지 일부   
-   
+
 ![관리자페이지 일부](https://user-images.githubusercontent.com/63248384/104603966-49fda000-56c0-11eb-8d2c-f1bcd793780a.PNG)   
     
     
