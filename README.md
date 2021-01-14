@@ -71,14 +71,17 @@
 ![친환경 상품 상세 조회](https://user-images.githubusercontent.com/63248384/104600137-f6895300-56bb-11eb-9559-c47a2f93cc4a.PNG)   
    
     
-- 친환경 상품 등록
+- 상품 등록   
+   
+![상품 등록](https://user-images.githubusercontent.com/63248384/104600801-d1e1ab00-56bc-11eb-8ff2-bff12390085a.PNG)   
+   
+   
 - 장바구니
    
 ![장바구니](https://user-images.githubusercontent.com/63248384/104600526-73b4c800-56bc-11eb-8006-4857abfbadc3.PNG)
    
     
-- 바로구매를 통한 결제
-- 장바구니를 통한 결제
+- 결제하기 
 - 마이페이지 일부
 - 관리자페이지 일부
 - 자주 묻는 질문 게시판
