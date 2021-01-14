@@ -81,7 +81,9 @@
 
 ![장바구니](https://user-images.githubusercontent.com/63248384/104600526-73b4c800-56bc-11eb-8006-4857abfbadc3.PNG)
    
+   
 - 찜하기   
+![찜하기](https://user-images.githubusercontent.com/63248384/104605843-5a167f00-56c2-11eb-8c70-ec5d81d23d61.PNG)   
 
        
 - 주문하기 배송지 변경   
@@ -98,10 +100,12 @@
 
 ![마이페이지 일부](https://user-images.githubusercontent.com/63248384/104603943-436f2880-56c0-11eb-8f4e-93afde94edfb.PNG)   
     
-- 후기 작성   
+- 후기 작성  
+![후기작성](https://user-images.githubusercontent.com/63248384/104605862-613d8d00-56c2-11eb-9f66-e5417da09a73.PNG)   
 
 
 - 후기 조회   
+![후기 조회](https://user-images.githubusercontent.com/63248384/104605886-68fd3180-56c2-11eb-8af8-e3c24696b074.PNG)   
 
     
 - 관리자페이지 일부   
