@@ -66,20 +66,21 @@
 
 
 ### :computer: 화면 일부
-- 친환경 상품 상세 조회 일부
+- 친환경 상품 상세 조회 일부   
 
 ![친환경 상품 상세 조회](https://github.com/ssd256/Green_Together/blob/main/images/view/ProdectDetail.PNG)   
    
     
 - 상품 등록   
 
-![상품 등록](https://github.com/ssd256/Green_Together/blob/main/images/view/ProductInsert.PNG)   
+![상품 등록](https://github.com/ssd256/Green_Together/blob/main/images/view/ProductInsert.PNG)     
 
-   
+
 
 - 장바구니
 
-![장바구니](https://github.com/ssd256/Green_Together/blob/main/images/view/CartList.PNG)  
+![장바구니](https://github.com/ssd256/Green_Together/blob/main/images/view/CartList.PNG)   
+
 
 
 - 찜하기   
@@ -87,9 +88,11 @@
 ![찜하기](https://github.com/ssd256/Green_Together/blob/main/images/view/WishList.PNG)   
 
 
+
 - 주문하기 배송지 변경   
 
 ![주문하기 배송지 변경2](https://github.com/ssd256/Green_Together/blob/main/images/view/ChangeDelivery.PNG)      
+
 
 
 - 결제창   
@@ -97,9 +100,11 @@
 ![결제하기 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Payment.PNG)   
 
 
+
 - 마이페이지 일부  
 
 ![마이페이지 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/MyPage.PNG)   
+
 
 
 - 후기 작성 
@@ -107,14 +112,17 @@
 ![후기작성](https://github.com/ssd256/Green_Together/blob/main/images/view/ReviewInsert.PNG)   
 
 
+
 - 후기 조회   
 
 ![후기 조회](https://github.com/ssd256/Green_Together/blob/main/images/view/ReviewDetail.PNG)   
 
 
+
 - 관리자페이지 일부   
 
 ![관리자페이지 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Admin.PNG)   
+
 
 
 - 자주 묻는 질문 게시판   
