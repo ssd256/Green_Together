@@ -76,16 +76,17 @@
 ![상품 등록](https://user-images.githubusercontent.com/63248384/104604407-ac56a080-56c0-11eb-963b-6d65bfa41156.PNG)   
 
    
-   
+
 - 장바구니
 
 ![장바구니](https://user-images.githubusercontent.com/63248384/104600526-73b4c800-56bc-11eb-8006-4857abfbadc3.PNG)
-   
-   
+
+
 - 찜하기   
+
 ![찜하기](https://user-images.githubusercontent.com/63248384/104605843-5a167f00-56c2-11eb-8c70-ec5d81d23d61.PNG)   
 
-       
+
 - 주문하기 배송지 변경   
 
 ![주문하기 배송지 변경2](https://user-images.githubusercontent.com/63248384/104601958-381afd80-56be-11eb-9b4a-e40c4b66c1b1.PNG)      
@@ -94,25 +95,28 @@
 - 결제창   
 
 ![결제하기 일부](https://user-images.githubusercontent.com/63248384/104601364-7fed5500-56bd-11eb-8b49-44124d8eb1a0.PNG)   
-   
-   
+
+
 - 마이페이지 일부  
 
 ![마이페이지 일부](https://user-images.githubusercontent.com/63248384/104603943-436f2880-56c0-11eb-8f4e-93afde94edfb.PNG)   
-    
-- 후기 작성  
+
+
+- 후기 작성 
+
 ![후기작성](https://user-images.githubusercontent.com/63248384/104605862-613d8d00-56c2-11eb-9f66-e5417da09a73.PNG)   
 
 
 - 후기 조회   
+
 ![후기 조회](https://user-images.githubusercontent.com/63248384/104605886-68fd3180-56c2-11eb-8af8-e3c24696b074.PNG)   
 
-    
+
 - 관리자페이지 일부   
 
 ![관리자페이지 일부](https://user-images.githubusercontent.com/63248384/104603966-49fda000-56c0-11eb-8d2c-f1bcd793780a.PNG)   
-    
-    
+
+
 - 자주 묻는 질문 게시판   
 
 ![자주 묻는 게시판 일부](https://user-images.githubusercontent.com/63248384/104604640-e758d400-56c0-11eb-8ae9-6aa5ede21eb7.PNG)
