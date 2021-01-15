@@ -92,42 +92,55 @@
 - 찜하기   
 
 ![찜하기](https://github.com/ssd256/Green_Together/blob/main/images/view/WishList.PNG)   
-**1. 추가된 상품을 한 개씩 장바구니에 추가할 수 있습니다.
-2. 추가된 상품을 한 개씩 삭제할 수 있습니다.
+**1. 추가된 상품을 한 개씩 장바구니에 추가할 수 있습니다.    
+2. 추가된 상품을 한 개씩 삭제할 수 있습니다.   
 3. 찜목록에는 최대 5개의 상품만 담을 수 있습니다.**
 <br><br><br>
 
 - 주문하기 배송지 변경   
 
 ![주문하기 배송지 변경2](https://github.com/ssd256/Green_Together/blob/main/images/view/ChangeDelivery.PNG)      
+**1. 배송지는 기본적으로 주문자의 주소로 설정됩니다. 배송지 변경하기 버튼을 통해 받는 사람의 정보를 변경할 수 있습니다.   
+2. 우편번호 찾기 버튼을 통해 새로운 주소로 배송지를 변경할 수 있습니다.**   
 <br><br><br>
 
 - 결제창   
 
 ![결제하기 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Payment.PNG)   
+**결제창을 통해 원하는 결제수단을 선택하면 결제할 수 있습니다.[i'm port]**   
 <br><br><br>
 
 - 마이페이지 일부  
 
 ![마이페이지 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/MyPage.PNG)   
+**1. 상세조회 버튼을 통해 주문한 물품의 자세한 정보를 확인할 수 있습니다.   
+2. 주문취소 버튼을 누르면 주문취소와 함께 구매 목록에서 사라집니다.   
+3. 구매확정 버튼을 누르면 주문취소, 구매확정 버튼이 사라지고 후기작성 버튼이 나타납니다.   
+배송완료가 되지 않을 때 구매확정을 하면, 배송상태 또한 배송완료로 바뀌게 됩니다.**
 <br><br><br>
 
 - 후기 작성 
 
 ![후기작성](https://github.com/ssd256/Green_Together/blob/main/images/view/ReviewInsert.PNG)   
+**1. 후기는 구매확정 된 상품 당 한 번만 작성할 수 있고, 후기 삭제 후 재작성 할 수 없습니다.   
+2. 후기작성 내용만 채우면 별점이나 사진을 선택하지 않아도 후기 등록이 가능합니다.**
 <br><br><br>
 
 - 후기 조회   
 
 ![후기 조회](https://github.com/ssd256/Green_Together/blob/main/images/view/ReviewDetail.PNG)   
+**작성한 후기는 상품의 상제 조회 페이지에서 확인/삭제할 수 있습니다.**
 <br><br><br>
 
 - 관리자페이지 일부   
 
 ![관리자페이지 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Admin.PNG)   
+**사용자가 구매한 주문한 상품들의 주문 상태와 배송 상태를 관리할 수 있습니다.**
 <br><br><br>
 
 - 자주 묻는 질문 게시판   
 
-![자주 묻는 게시판 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Question.PNG)
+ 
+**1. 관리자만 해당 게시판에 질문을 등록/수정/삭제할 수 있습니다. 사용자는 조회만 가능합니다.
+2. 라디오버튼을 통해 한 개의 질문과 답변을 수정/삭제할 수 있습니다. **
 <br>
