@@ -71,62 +71,63 @@
 ![친환경 상품 상세 조회](https://github.com/ssd256/Green_Together/blob/main/images/view/ProdectDetail.PNG)   
  **1. 쇼핑몰 목록 화면에서 상품의 이미지를 누르면 상세 조회 화면으로 이동합니다.   
  2. 수량을 선택하여 구매, 장바구니, 찜하기 기능을 사용할 수 있습니다.**  
- **2-1. 재고수량이 0이면 '품절'표시로 바뀌며 구매, 장바구니, 찜하기 기능을 사용할 수 없습니다.**   
+  **2-1. 재고수량이 0이면 '품절'표시로 바뀌며 구매, 장바구니, 찜하기 기능을 사용할 수 없습니다.**   
 <br><br><br>
 
 - 상품 등록   
 
-![상품 등록](https://github.com/ssd256/Green_Together/blob/main/images/view/ProductInsert.PNG)     
-
-
+![상품 등록](https://github.com/ssd256/Green_Together/blob/main/images/view/ProductInsert.PNG)   
+**1. 모든 항목을 입력해야 등록이 가능하며, 한 항목이라도 비거나 선택하지 않으면 swal 알림창이 뜹니다.
+ 2. 상품가격과 재고수량은 숫자만 입력이 가능합니다.**
+<br><br><br>
 
 - 장바구니
 
 ![장바구니](https://github.com/ssd256/Green_Together/blob/main/images/view/CartList.PNG)   
-
-
+**1. 추가된 상품을 한 개씩 삭제할 수 있습니다.
+2. 체크박스를 통해 여러 개 구매할 수 있습니다. 선택된 상품들의 결제 금액은 총 결제 금액 옆에 더해서 표시됩니다.
+3. 장바구니에는 최대 5개의 상품만 담을 수 있습니다.
+**
+<br><br><br>
 
 - 찜하기   
 
 ![찜하기](https://github.com/ssd256/Green_Together/blob/main/images/view/WishList.PNG)   
-
-
+**1. 추가된 상품을 한 개씩 장바구니에 추가할 수 있습니다.
+2. 추가된 상품을 한 개씩 삭제할 수 있습니다.
+3. 찜목록에는 최대 5개의 상품만 담을 수 있습니다.
+**
+<br><br><br>
 
 - 주문하기 배송지 변경   
 
 ![주문하기 배송지 변경2](https://github.com/ssd256/Green_Together/blob/main/images/view/ChangeDelivery.PNG)      
-
-
+<br><br><br>
 
 - 결제창   
 
 ![결제하기 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Payment.PNG)   
-
-
+<br><br><br>
 
 - 마이페이지 일부  
 
 ![마이페이지 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/MyPage.PNG)   
-
-
+<br><br><br>
 
 - 후기 작성 
 
 ![후기작성](https://github.com/ssd256/Green_Together/blob/main/images/view/ReviewInsert.PNG)   
-
-
+<br><br><br>
 
 - 후기 조회   
 
 ![후기 조회](https://github.com/ssd256/Green_Together/blob/main/images/view/ReviewDetail.PNG)   
-
-
+<br><br><br>
 
 - 관리자페이지 일부   
 
 ![관리자페이지 일부](https://github.com/ssd256/Green_Together/blob/main/images/view/Admin.PNG)   
-
-
+<br><br><br>
 
 - 자주 묻는 질문 게시판   
 
