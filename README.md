@@ -16,7 +16,7 @@
 - API: Swal, kakao map, kakao login, SMTP, I'mport
 <br>          
 
-### :dart: DB 설계도
+### :clipboard: DB 설계도
 ![DB 설계도](https://github.com/ssd256/Green_Together/blob/main/images/view/DB%20ERD.PNG)   
 [함께그린 ERD](https://www.erdcloud.com/d/EhKyEDLCTsgZXtTBh)    
 <br>
@@ -39,7 +39,7 @@
 - 관리자(메인화면 사진 변경)      
  <br>  
    
-:green_book: **김미경**
+:green_book: **김미경** :sparkles:
 - 친환경 쇼핑몰 조회 / 구매 / 결제 / 장바구니 / 찜하기
 - 구매후기(조회 / 작성 / 삭제)
 - 자주 묻는 질문 게시판 조회 / 등록 / 수정 / 삭제
