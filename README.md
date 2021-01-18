@@ -15,6 +15,10 @@
 - Team Coop : Github, ERDCloud, kakaoOven
 - API: Swal, kakao map, kakao login, SMTP, I'mport
 <br>          
+
+### :dart: DB
+
+<br>
        
 ### :date: 일정      
   - 9/21 ~ 9/24   기획회의(+ppt)   
