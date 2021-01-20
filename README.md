@@ -7,6 +7,7 @@
 <br>      
   
 ### :dart: 개발환경
+- Operating System : Window OS
 - Server : Apache Tomcat 9.0
 - Database : Oracle 11g
 - Development Tool : Eclipse 4.15.0, sqlDeveloper version 19.2.1.247, Apache Maven
