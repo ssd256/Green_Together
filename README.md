@@ -18,8 +18,8 @@
 <br>          
 
 ### :clipboard: DB 설계도
-![DB 설계도](https://github.com/ssd256/Green_Together/blob/main/images/view/DB%20ERD.PNG)   
-[함께그린 ERD](https://www.erdcloud.com/d/EhKyEDLCTsgZXtTBh)    
+![DB 설계도]()   
+[함께그린 ERD](https://www.erdcloud.com/d/xN8LBxpgMSHy8KoJf)    
 <br>
        
 ### :date: 일정      
