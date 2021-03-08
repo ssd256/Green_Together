@@ -18,7 +18,7 @@
 <br>          
 
 ### :clipboard: DB 설계도
-![DB 설계도]()   
+![DB 설계도](https://github.com/ssd256/Green_Together/blob/main/images/view/erd.PNG)   
 [함께그린 ERD](https://www.erdcloud.com/d/xN8LBxpgMSHy8KoJf)    
 <br>
        
